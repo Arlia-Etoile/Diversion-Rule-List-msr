@@ -12,6 +12,7 @@ on:
 
 jobs:
   update:
+    timeout-minutes: 45
     runs-on: ubuntu-slim
     permissions:
       actions: write
