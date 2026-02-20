@@ -109,6 +109,8 @@ tasks:
     format: "mrs"
     src:
       - "https://github.com/hagezi/dns-blocklists/raw/refs/heads/main/wildcard/light-onlydomains.txt"
+      - "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-httpdns-cn@ads.list"
+      - "https://github.com/ignaciocastro/a-dove-is-dumb/raw/refs/heads/main/pihole.txt"
     custom_script: |
       print(f"  -> 执行 adlite 自定义处理，处理前数量: {len(domains)}")
       # 为每行添加 +. 前缀 (如果还没有的话)
