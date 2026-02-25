@@ -120,6 +120,6 @@ tasks:
   adlist:
     format: "mrs"
     src:
-      # - "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google@ads.list"
+      - "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google@ads.list"
       - "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo@ads.list"
       - "https://github.com/ignaciocastro/a-dove-is-dumb/raw/refs/heads/main/pihole.txt"
