@@ -1,0 +1,22 @@
+# 自动探测文本文件并统一规范化
+* text=auto eol=lf
+
+# 显式指定特定类型的文件始终使用 LF
+*.js text eol=lf
+*.ts text eol=lf
+*.mts text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.ipynb text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.jsonc text eol=lf
+*.jinja text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# 确保二进制文件不被干扰
+*.7z binary
