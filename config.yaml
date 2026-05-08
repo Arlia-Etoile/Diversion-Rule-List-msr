@@ -5,7 +5,7 @@ output_dir: "./out"
 # Mihomo 配置
 mihomo:
   api_url: "https://api.github.com/repos/MetaCubeX/mihomo/releases"
-  start_with: "mihomo-linux-amd64-alpha"
+  start_with: "mihomo-linux-amd64-v"
   end_with: ".gz"
 
 # Git 配置
