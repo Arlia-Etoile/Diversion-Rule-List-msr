@@ -21,10 +21,8 @@ tasks:
   ad:
     format: "mrs"
     src: # 会自动去重
-      - "https://github.com/privacy-protection-tools/anti-AD/raw/refs/heads/master/anti-ad-clash.yaml"
-      - "https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules_domainset.txt"
-      - "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-httpdns-cn@ads.list"
-      - "https://github.com/ignaciocastro/a-dove-is-dumb/raw/refs/heads/main/pihole.txt"
+      - "https://rule.kelee.one/Clash/Advertising.yaml"
+      - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
     custom_script: |
       print(f"  -> 执行自定义 AD 清洗，处理前数量: {len(domains)}")
 
