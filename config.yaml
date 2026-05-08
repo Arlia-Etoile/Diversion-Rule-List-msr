@@ -635,13 +635,6 @@ tasks:
       domains = filtered_domains
 
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
-
-  GamePf-IP:
-    format: "mrs"
-    type: "ipcidr" 
-    src:
-      - "https://rule.kelee.one/Clash/Epic.yaml"
-      - "https://rule.kelee.one/Clash/Steam.yaml"
       
   GamePf-Keyword:
     format: "mrs"
