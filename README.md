@@ -61,11 +61,7 @@
 
 ## 规则源说明
 
-本项目目前聚合的规则来源于以下开源项目：
+本项目目前聚合的规则来源于以下项目：
 
-- [anti-AD](https://github.com/privacy-protection-tools/anti-AD)
-- [AdRules](https://github.com/Cats-Team/AdRules)
-- [meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)
-- [a-dove-is-dumb](https://github.com/ignaciocastro/a-dove-is-dumb)
-
-各规则源保持其原有许可证，本项目仅提供聚合和转换服务。
+- [ShuntRules](https://https://github.com/luestr/ShuntRules)
+- [Diversion-Rule-List](https://github.com/Arlia-Etoile/Diversion-Rule-List/tree/main)
