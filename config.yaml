@@ -24,6 +24,9 @@ tasks:
       - "https://rule.kelee.one/Clash/Advertising.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
     custom_script: |
+      # 先过滤掉 IP-CIDR 条目，只留域名
+      domains = [d for d in domains if '/' not in d]
+      
       print(f"  -> 执行自定义 AD 清洗，处理前数量: {len(domains)}")
 
       # 定义需要移除的后缀，及其对应的替换规则 (None 代表只删不补)
