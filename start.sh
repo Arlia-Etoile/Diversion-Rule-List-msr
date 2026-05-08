@@ -189,6 +189,11 @@ try:
             line = line.strip()
             if not line: continue
             try:
+                # 兼容 Classical 格式：提取 IP-CIDR,1.1.1.1/24,no-resolve 中的 IP
+                if "IP-CIDR" in line.upper():
+                    parts = line.split(',')
+                    if len(parts) >= 2:
+                        line = parts[1].strip()
                 # strict=False 允许非规范写法，例如 192.168.1.5/24 会自动修正为网段地址 192.168.1.0/24
                 net = ipaddress.ip_network(line, strict=False)
                 if net.version == 4:
