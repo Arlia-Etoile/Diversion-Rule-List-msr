@@ -33,7 +33,7 @@ tasks:
       for d in domains:
           d_upper = d.upper()
           
-          # 1. 绝杀：包含 IP 相关关键字直接踢出
+          # 1. 将包含 IP 相关关键字直接踢出
           if "IP-CIDR" in d_upper or "IP-ASN" in d_upper or "GEOIP" in d_upper:
               continue
           
@@ -65,7 +65,7 @@ tasks:
 
       domains = filtered_domains
 
-      # 以下保留你原有的替换与跳过逻辑
+      # 替换与跳过逻辑
       rules_map = {
           ".xx.fbcdn.net.iberostar.com": "+.xx.fbcdn.net.iberostar.com",
           ".wns.windows.com":            "+.wns.windows.com",
