@@ -126,6 +126,7 @@ tasks:
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Fedi.yaml"
+      - "https://rule.kelee.one/Clash/Notion.yaml"
       
     custom_script: |
       import re
@@ -190,6 +191,7 @@ tasks:
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Fedi.yaml"
+      - "https://rule.kelee.one/Clash/Notion.yaml"
   
   CN:
     format: "mrs"
