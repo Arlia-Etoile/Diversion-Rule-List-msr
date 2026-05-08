@@ -125,6 +125,7 @@ tasks:
       - "https://rule.kelee.one/Clash/BoXun.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
+      - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Fedi.yaml"
       
     custom_script: |
       import re
@@ -188,6 +189,7 @@ tasks:
       - "https://rule.kelee.one/Clash/BoXun.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
+      - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Fedi.yaml"
   
   CN:
     format: "mrs"
