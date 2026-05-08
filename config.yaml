@@ -95,8 +95,8 @@ tasks:
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
 
   AdBlock-IP:
-    format: "ipcidr"
-    type: "classical"
+    format: "mrs"
+    type: "ipcidr"
     src:
       - "https://rule.kelee.one/Clash/Advertising.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
