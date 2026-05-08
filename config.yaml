@@ -124,6 +124,7 @@ tasks:
       - "https://rule.kelee.one/Clash/CNN.yaml"
       - "https://rule.kelee.one/Clash/BoXun.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
+      - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
       
     custom_script: |
       import re
@@ -186,6 +187,7 @@ tasks:
       - "https://rule.kelee.one/Clash/CNN.yaml"
       - "https://rule.kelee.one/Clash/BoXun.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/JailbreakRepo.yaml"
+      - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/Proxy%2B.yaml"
   
   CN:
     format: "mrs"
