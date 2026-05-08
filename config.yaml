@@ -18,7 +18,7 @@ git:
 
 # 任务配置
 tasks:
-  ad:
+  AdBlock:
     format: "mrs"
     type: "domain"
     src: 
@@ -92,7 +92,7 @@ tasks:
       domains = new_domains
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
 
-  adIP:
+  AdBlock-IP:
     format: "mrs"
     type: "ipcidr"
     src:
