@@ -636,20 +636,3 @@ tasks:
 
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
       
-  GamePf-Keyword:
-    format: "mrs"
-    type: "classical" # 关键字必须使用 classical 模式
-    src:
-      - "https://rule.kelee.one/Clash/Epic.yaml"
-      - "https://rule.kelee.one/Clash/Steam.yaml"
-    custom_script: |
-      print(f"  -> 执行 GamePf Keyword 规则提取...")
-      
-      keyword_rules = []
-      for line in domains:
-          # 只拦截带 DOMAIN-KEYWORD 前缀的行
-          if line.upper().startswith("DOMAIN-KEYWORD"):
-              keyword_rules.append(line)
-              
-      domains = keyword_rules
-      print(f"  -> 提取完成，处理后 Keyword 规则数: {len(domains)}")      
