@@ -346,9 +346,16 @@ EOF
 
     need_mrs=$(yq -r ".tasks.$task.format" "$config_file" | grep -q "mrs" && echo "true" || echo "false")
     if [ "$need_mrs" == "true" ]; then
-        echo "转换为 mrs 格式"
-        $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$output_dir/${task}.mrs"
-        echo "生成文件: ${task}.mrs (文件大小: $(du -h "$output_dir/${task}.mrs" | awk '{print $1}'))"
+        # 新增判断：如果输出文件为空（即行数为0或文件不存在），则跳过转换，防止 mihomo 崩溃
+        if [ ! -s "$output_file" ]; then
+            echo "  -> [跳过] 提取到的规则数量为 0，放弃生成 ${task}.mrs"
+            # 顺手把没用的空 txt 文件删掉，保持 output 目录干净
+            rm -f "$output_file"
+        else
+            echo "转换为 mrs 格式"
+            $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$output_dir/${task}.mrs"
+            echo "生成文件: ${task}.mrs (文件大小: $(du -h "$output_dir/${task}.mrs" | awk '{print $1}'))"
+        fi
     fi
     rm -f "$work_dir/tmp.txt"
 done
