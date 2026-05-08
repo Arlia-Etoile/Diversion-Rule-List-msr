@@ -14,7 +14,7 @@ git:
   user_name: "oom-wg[bot]"
   release_branch: "release"
   max_history: 7
-  timezone: "Asia/Shanghai"
+  timezone: "Asia/Taipei"
 
 # 任务配置
 tasks:
