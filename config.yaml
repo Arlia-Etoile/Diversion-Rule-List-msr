@@ -25,6 +25,8 @@ tasks:
       - "https://rule.kelee.one/Clash/Advertising.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
       - "https://rule.kelee.one/Clash/AdGuardSDNSFilter.yaml"
+      - "https://rule.kelee.one/Clash/JiGuangTuiSong.yaml "
+      - "https://rule.kelee.one/Clash/YouMengChuangXiang.yaml"
       
     custom_script: |
       import re
