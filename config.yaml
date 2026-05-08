@@ -24,6 +24,8 @@ tasks:
     src: 
       - "https://rule.kelee.one/Clash/Advertising.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
+      - "https://rule.kelee.one/Clash/AdGuardSDNSFilter.yaml"
+      
     custom_script: |
       import re
       import ipaddress
@@ -94,11 +96,25 @@ tasks:
 
   AdBlock-IP:
     format: "mrs"
-    type: "ipcidr"
+    type: "classical"
     src:
       - "https://rule.kelee.one/Clash/Advertising.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/main/yaml/OtherBlock.yaml"
-  
+      - "https://rule.kelee.one/Clash/AdGuardSDNSFilter.yaml"
+
+    custom_script: |
+      print(f"  -> 执行 IP 规则提取，处理前总行数: {len(domains)}")
+      
+      ip_rules = []
+      for line in domains:
+          line_upper = line.upper()
+          # 拦截所有带有 IP-CIDR, IP-ASN, GEOIP 前缀的行
+          if line_upper.startswith("IP-CIDR") or line_upper.startswith("IP-ASN") or line_upper.startswith("GEOIP"):
+              ip_rules.append(line)
+              
+      domains = ip_rules
+      print(f"  -> 提取完成，处理后纯 IP/ASN 规则数: {len(domains)}")
+    
   cn:
     format: "mrs"
     src:
