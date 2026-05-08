@@ -677,7 +677,7 @@ tasks:
     format: "mrs"
     type: "domain"
     src: 
-      - "https://kelee.one/Tool/Clash/Rule/Pixiv.yaml"
+      - "https://rule.kelee.one/Clash/Pixiv.yaml"
       
     custom_script: |
       import re
