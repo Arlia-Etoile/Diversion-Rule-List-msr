@@ -586,12 +586,11 @@ tasks:
       - "https://rule.kelee.one/Clash/AmazonCN.yaml"
       - "https://rule.kelee.one/Clash/Cloudflarecn.yaml"
 
-  GamePf:
+  Pixiv:
     format: "mrs"
     type: "domain"
     src: 
-      - "https://rule.kelee.one/Clash/Epic.yaml"
-      - "https://rule.kelee.one/Clash/Steam.yaml"
+      - "https://rule.kelee.one/Clash/Pixiv.yaml"
       
     custom_script: |
       import re
