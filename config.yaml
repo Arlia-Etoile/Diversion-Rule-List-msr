@@ -120,7 +120,7 @@ tasks:
       - "https://rule.kelee.one/Clash/BBC.yaml"
       - "https://rule.kelee.one/Clash/NYTimes.yaml"
       - "https://rule.kelee.one/Clash/Bloomberg.yaml"
-      - "https://rule.kelee.one/Clash/Reuters.yaml"
+      - "https://rule.kelee.one/Clash/ThomsonReuters.yaml"
       - "https://rule.kelee.one/Clash/CNN.yaml"
       - "https://rule.kelee.one/Clash/BoXun.yaml"
       
@@ -164,32 +164,7 @@ tasks:
           filtered_domains.append(d)
 
       domains = filtered_domains
-
-      # 替换与跳过逻辑
-      rules_map = {
-          ".xx.fbcdn.net.iberostar.com": "+.xx.fbcdn.net.iberostar.com",
-          ".wns.windows.com":            "+.wns.windows.com",
-          ".p2l.info":                   "+.p2l.info",
-          ".wo.com.cn":                  None,  
-          ".apps.iocnt.de":              "+.apps.iocnt.de" 
-      }
-      new_domains = []
-      for d in domains:
-          skip = False
-          if d.startswith("+.data-") and d.endswith(".apps.iocnt.de"):
-              skip = True
-          if not skip:
-              for suffix in rules_map:
-                  if d.endswith(suffix):
-                      skip = True
-                      break
-          if not skip:
-              new_domains.append(d)
-
-      for replacement in rules_map.values():
-          if replacement:
-              new_domains.append(replacement)
-      domains = new_domains
+      
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
 
   Proxy-IP:
@@ -206,7 +181,7 @@ tasks:
       - "https://rule.kelee.one/Clash/BBC.yaml"
       - "https://rule.kelee.one/Clash/NYTimes.yaml"
       - "https://rule.kelee.one/Clash/Bloomberg.yaml"
-      - "https://rule.kelee.one/Clash/Reuters.yaml"
+      - "https://rule.kelee.one/Clash/ThomsonReuters.yaml"
       - "https://rule.kelee.one/Clash/CNN.yaml"
       - "https://rule.kelee.one/Clash/BoXun.yaml"
   
