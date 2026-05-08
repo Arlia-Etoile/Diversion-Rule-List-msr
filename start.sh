@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e 
+WGET_UA="clash.meta"
 
 config_file="config.yaml"
 if [ ! -f "$config_file" ]; then
@@ -121,7 +122,7 @@ for task in $task_names; do
         filename=$(basename "$url")
         download_path="$work_dir/$filename"
         
-        if ! wget -q -O "$download_path" "$url"; then
+        if ! wget --user-agent="$WGET_UA" -q -O "$download_path" "$url"; then
             echo "错误: 下载失败 $url，退出..."
             exit 1
         fi
