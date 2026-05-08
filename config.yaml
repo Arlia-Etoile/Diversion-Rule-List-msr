@@ -610,3 +610,71 @@ tasks:
       - "https://rule.kelee.one/Clash/aiXcoder.yaml"
       - "https://rule.kelee.one/Clash/AmazonCN.yaml"
       - "https://rule.kelee.one/Clash/Cloudflarecn.yaml"
+
+  GamePf:
+    format: "mrs"
+    type: "domain"
+    src: 
+      - "https://rule.kelee.one/Clash/Epic.yaml"
+      - "https://rule.kelee.one/Clash/Steam.yaml"
+    custom_script: |
+      import re
+      import ipaddress
+      print(f"  -> 执行 GamePf 域名清洗，处理前数量: {len(domains)}")
+
+      filtered_domains = []
+      for d in domains:
+          d_upper = d.upper()
+          
+          # 1. 踢出 IP 相关关键字
+          if "IP-CIDR" in d_upper or "IP-ASN" in d_upper or "GEOIP" in d_upper:
+              continue
+          
+          # 2. 洗白 Classical 格式
+          if d_upper.startswith("DOMAIN-SUFFIX,"):
+              parts = d.split(',')
+              if len(parts) >= 2:
+                  d = "+." + parts[1].strip()
+          elif d_upper.startswith("DOMAIN,"):
+              parts = d.split(',')
+              if len(parts) >= 2:
+                  d = parts[1].strip()
+          elif d_upper.startswith("DOMAIN-KEYWORD,"):
+              continue 
+              
+          # 3. 兜底：处理纯 IP 和 IPv6
+          clean_d = re.sub(r'^[\+\*\.\"\']+|[\"\']+$', '', d.strip())
+          is_ip = False
+          try:
+              ipaddress.ip_network(clean_d, strict=False)
+              is_ip = True
+          except ValueError:
+              pass
+              
+          if is_ip or ':' in clean_d:
+              continue
+              
+          filtered_domains.append(d)
+
+      # 直接把清洗完的域名赋值回去（删掉了多余的 rules_map）
+      domains = filtered_domains
+      print(f"  -> 域名清洗完成，处理后数量: {len(domains)}")
+
+  GamePf-IP:
+    format: "mrs"
+    type: "classical" 
+    src:
+      - "https://rule.kelee.one/Clash/Epic.yaml"
+      - "https://rule.kelee.one/Clash/Steam.yaml"
+    custom_script: |
+      print(f"  -> 执行 GamePf IP/ASN 规则提取...")
+      
+      ip_rules = []
+      for line in domains:
+          line_upper = line.upper()
+          # 提取所有的 IP、网段、ASN 和 GEOIP
+          if line_upper.startswith("IP-CIDR") or line_upper.startswith("IP-ASN") or line_upper.startswith("GEOIP"):
+              ip_rules.append(line)
+              
+      domains = ip_rules
+      print(f"  -> 提取完成，处理后 IP/ASN 规则数: {len(domains)}")
