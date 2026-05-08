@@ -149,13 +149,28 @@ for task in $task_names; do
     echo "字典序排序、去重 (智能语义过滤)"
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
 
-    # 读取第一行用于判断类型
-    first_line=$(head -n 1 "$work_dir/tmp.txt")
+   task_type=$(yq -r ".tasks.$task.type" "$config_file")
 
-    # 判断逻辑：如果包含 冒号(:) 或者 斜杠(/)，认为是 IP段
-    if [[ "$first_line" =~ [:/] ]]; then
-        echo "类型：IP/CIDR 网段 (启用语义合并)"
+    if [ "$task_type" == "ipcidr" ]; then
         behavior="ipcidr"
+        echo "类型：由配置强制指定为 IP/CIDR 网段 (启用语义合并)"
+    elif [ "$task_type" == "domain" ]; then
+        behavior="domain"
+        echo "类型：由配置强制指定为 域名列表"
+    else
+        # 兜底逻辑：如果未指定，读取第一行用于判断类型
+        first_line=$(head -n 1 "$work_dir/tmp.txt")
+        if [[ "$first_line" =~ [:/] ]]; then
+            behavior="ipcidr"
+            echo "类型：自动识别为 IP/CIDR 网段 (启用语义合并)"
+        else
+            behavior="domain"
+            echo "类型：自动识别为 域名列表"
+        fi
+    fi
+
+    # 使用 behavior 变量进行后续判断
+    if [ "$behavior" == "ipcidr" ]; then
         # 使用 Python ipaddress 模块进行 CIDR 合并
         python3 - "$work_dir/tmp.txt" "$output_file" <<-'EOF'
 import sys
