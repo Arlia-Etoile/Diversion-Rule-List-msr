@@ -121,7 +121,12 @@ for task in $task_names; do
         filename=$(basename "$url")
         download_path="$work_dir/$filename"
         
-        if ! wget -q -O "$download_path" "$url"; then
+        if [[ "$url" == *"kelee.one"* ]]; then
+            wget_opts="-q --user-agent='clash.meta'"
+        else
+            wget_opts="-q"
+        fi
+        if ! wget $wget_opts -O "$download_path" "$url"; then
             echo "错误: 下载失败 $url，退出..."
             exit 1
         fi
