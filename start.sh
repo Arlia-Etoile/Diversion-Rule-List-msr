@@ -91,9 +91,11 @@ fi
 chmod +x "$work_dir/mihomo"
 echo "Mihomo 已就绪: $work_dir/mihomo"
 
-output_dir=$(yq -r '.output_dir' "$config_file")
-rm -rf "$output_dir" || true
-mkdir -p "$output_dir"
+out_mrs="./out_mrs"
+out_yaml="./out_yaml"
+out_lsr="./out_lsr"
+rm -rf "$out_mrs" "$out_yaml" "$out_lsr" || true
+mkdir -p "$out_mrs" "$out_yaml" "$out_lsr"
 
 
 echo "开始处理任务..."
