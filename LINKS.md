@@ -18,7 +18,8 @@
 | `CN` | `MRS` | https://r.arlia.cn.mt/mrs/CN/CN.mrs |
 | `CN_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/CN/CN_Classical.yaml |
 | `ClaudeAI` | `MRS` | https://r.arlia.cn.mt/mrs/ClaudeAI/ClaudeAI.mrs |
-| `EpicGames` | `MRS` | https://r.arlia.cn.mt/mrs/EpicGames/EpicGames.mrs |
+| `GamePF` | `MRS` | https://r.arlia.cn.mt/mrs/GamePF/GamePF.mrs |
+| `GamePF_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/GamePF/GamePF_Classical.yaml |
 | `Hoyoverse` | `MRS` | https://r.arlia.cn.mt/mrs/Hoyoverse/Hoyoverse.mrs |
 | `Pixiv` | `MRS` | https://r.arlia.cn.mt/mrs/Pixiv/Pixiv.mrs |
 | `Proxy-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Proxy/Proxy-IP.mrs |
@@ -30,6 +31,9 @@
 | `Social_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Social/Social_Classical.yaml |
 | `Testflight` | `MRS` | https://r.arlia.cn.mt/mrs/Testflight/Testflight.mrs |
 | `Testflight_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Testflight/Testflight_Classical.yaml |
+| `YouTube-IP` | `MRS` | https://r.arlia.cn.mt/mrs/YouTube/YouTube-IP.mrs |
+| `YouTube` | `MRS` | https://r.arlia.cn.mt/mrs/YouTube/YouTube.mrs |
+| `YouTube_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/YouTube/YouTube_Classical.yaml |
 | `iCloudCN` | `MRS` | https://r.arlia.cn.mt/mrs/iCloudCN/iCloudCN.mrs |
 | `iOS_Updates` | `MRS` | https://r.arlia.cn.mt/mrs/iOS_Updates/iOS_Updates.mrs |
 
@@ -43,13 +47,14 @@
 | `AppleID` | `LSR` | https://r.arlia.cn.mt/lsr/AppleID/AppleID.lsr |
 | `CN` | `LSR` | https://r.arlia.cn.mt/lsr/CN/CN.lsr |
 | `ClaudeAI` | `LSR` | https://r.arlia.cn.mt/lsr/ClaudeAI/ClaudeAI.lsr |
-| `EpicGames` | `LSR` | https://r.arlia.cn.mt/lsr/EpicGames/EpicGames.lsr |
+| `GamePF` | `LSR` | https://r.arlia.cn.mt/lsr/GamePF/GamePF.lsr |
 | `Hoyoverse` | `LSR` | https://r.arlia.cn.mt/lsr/Hoyoverse/Hoyoverse.lsr |
 | `Pixiv` | `LSR` | https://r.arlia.cn.mt/lsr/Pixiv/Pixiv.lsr |
 | `Proxy` | `LSR` | https://r.arlia.cn.mt/lsr/Proxy/Proxy.lsr |
 | `Rockstar` | `LSR` | https://r.arlia.cn.mt/lsr/Rockstar/Rockstar.lsr |
 | `Social` | `LSR` | https://r.arlia.cn.mt/lsr/Social/Social.lsr |
 | `Testflight` | `LSR` | https://r.arlia.cn.mt/lsr/Testflight/Testflight.lsr |
+| `YouTube` | `LSR` | https://r.arlia.cn.mt/lsr/YouTube/YouTube.lsr |
 | `iCloudCN` | `LSR` | https://r.arlia.cn.mt/lsr/iCloudCN/iCloudCN.lsr |
 | `iOS_Updates` | `LSR` | https://r.arlia.cn.mt/lsr/iOS_Updates/iOS_Updates.lsr |
 
@@ -63,13 +68,14 @@
 | `AppleID` | `YAML` | https://r.arlia.cn.mt/yaml/AppleID/AppleID.yaml |
 | `CN` | `YAML` | https://r.arlia.cn.mt/yaml/CN/CN.yaml |
 | `ClaudeAI` | `YAML` | https://r.arlia.cn.mt/yaml/ClaudeAI/ClaudeAI.yaml |
-| `EpicGames` | `YAML` | https://r.arlia.cn.mt/yaml/EpicGames/EpicGames.yaml |
+| `GamePF` | `YAML` | https://r.arlia.cn.mt/yaml/GamePF/GamePF.yaml |
 | `Hoyoverse` | `YAML` | https://r.arlia.cn.mt/yaml/Hoyoverse/Hoyoverse.yaml |
 | `Pixiv` | `YAML` | https://r.arlia.cn.mt/yaml/Pixiv/Pixiv.yaml |
 | `Proxy` | `YAML` | https://r.arlia.cn.mt/yaml/Proxy/Proxy.yaml |
 | `Rockstar` | `YAML` | https://r.arlia.cn.mt/yaml/Rockstar/Rockstar.yaml |
 | `Social` | `YAML` | https://r.arlia.cn.mt/yaml/Social/Social.yaml |
 | `Testflight` | `YAML` | https://r.arlia.cn.mt/yaml/Testflight/Testflight.yaml |
+| `YouTube` | `YAML` | https://r.arlia.cn.mt/yaml/YouTube/YouTube.yaml |
 | `iCloudCN` | `YAML` | https://r.arlia.cn.mt/yaml/iCloudCN/iCloudCN.yaml |
 | `iOS_Updates` | `YAML` | https://r.arlia.cn.mt/yaml/iOS_Updates/iOS_Updates.yaml |
 
