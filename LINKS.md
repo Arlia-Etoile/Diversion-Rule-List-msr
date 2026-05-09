@@ -9,6 +9,9 @@
 | Rule Set | Type | Subscription Link |
 | :--- | :---: | :--- |
 | `360` | `MRS` | https://r.arlia.cn.mt/mrs/360/360.mrs |
+| `AI-IP` | `MRS` | https://r.arlia.cn.mt/mrs/AI/AI-IP.mrs |
+| `AI` | `MRS` | https://r.arlia.cn.mt/mrs/AI/AI.mrs |
+| `AI_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AI/AI_Classical.yaml |
 | `AdBlock-IP` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock-IP.mrs |
 | `AdBlock` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock.mrs |
 | `AdBlock_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock_Classical.yaml |
@@ -42,6 +45,7 @@
 | Rule Set | Type | Subscription Link |
 | :--- | :---: | :--- |
 | `360` | `LSR` | https://r.arlia.cn.mt/lsr/360/360.lsr |
+| `AI` | `LSR` | https://r.arlia.cn.mt/lsr/AI/AI.lsr |
 | `AdBlock` | `LSR` | https://r.arlia.cn.mt/lsr/AdBlock/AdBlock.lsr |
 | `AppStore` | `LSR` | https://r.arlia.cn.mt/lsr/AppStore/AppStore.lsr |
 | `AppleID` | `LSR` | https://r.arlia.cn.mt/lsr/AppleID/AppleID.lsr |
@@ -63,6 +67,7 @@
 | Rule Set | Type | Subscription Link |
 | :--- | :---: | :--- |
 | `360` | `YAML` | https://r.arlia.cn.mt/yaml/360/360.yaml |
+| `AI` | `YAML` | https://r.arlia.cn.mt/yaml/AI/AI.yaml |
 | `AdBlock` | `YAML` | https://r.arlia.cn.mt/yaml/AdBlock/AdBlock.yaml |
 | `AppStore` | `YAML` | https://r.arlia.cn.mt/yaml/AppStore/AppStore.yaml |
 | `AppleID` | `YAML` | https://r.arlia.cn.mt/yaml/AppleID/AppleID.yaml |
