@@ -64,4 +64,4 @@ The rules currently aggregated in this project are sourced from the following pr
 
 ## Credits & Acknowledgements
 
-Special thanks to the upstream maintainer [NuoFang6](https://github.com/NuoFang6) and the original project [RuleList](https://github.com/OOM-WG/RuleList) for their outstanding work and maintenance.
+Special thanks to the upstream maintainer [NuoFang6](https://github.com/NuoFang6) and the [original project](https://github.com/OOM-WG/RuleList) for their outstanding work and maintenance.
