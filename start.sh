@@ -114,25 +114,38 @@ for task in $task_names; do
         fi
     done
 
-    # 为三种格式分别创建包含 Task 名字的子文件夹
-    dir_mrs="$out_mrs/$task"
-    dir_yaml="$out_yaml/$task"
-    dir_lsr="$out_lsr/$task"
+# === 整合与合并逻辑 ===
+    # 提取基础任务名，如果以 -IP 结尾则去掉 -IP (例如 AdBlock-IP 变成 AdBlock)
+    base_task="${task%-IP}"
+
+    # 为三种格式分别创建包含基础名字的子文件夹 (从而共用同一个文件夹)
+    dir_mrs="$out_mrs/$base_task"
+    dir_yaml="$out_yaml/$base_task"
+    dir_lsr="$out_lsr/$base_task"
     mkdir -p "$dir_mrs" "$dir_yaml" "$dir_lsr"
 
     echo "字典序排序、去重 (基础清理)"
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
     sort -u "$work_dir/tmp.txt" -o "$work_dir/tmp.txt"
 
-    echo "-> 执行纯整合：生成 .yaml 和 .lsr"
-    # 生成 yaml：添加 payload 表头，并为每行添加 yaml 列表项前缀和单引号
-    echo "payload:" > "$dir_yaml/${task}.yaml"
-    sed "s/^/  - '/; s/$/'/" "$work_dir/tmp.txt" >> "$dir_yaml/${task}.yaml"
+    echo "-> 执行纯整合：合并到 ${base_task} 的 .yaml 和 .lsr 中"
     
-    # 生成 lsr：Loon 规则集支持纯文本列表，直接复制即可
-    cp "$work_dir/tmp.txt" "$dir_lsr/${task}.lsr"
+    # 1. 生成或追加 yaml
+    file_yaml="$dir_yaml/${base_task}.yaml"
+    # 如果文件不存在，说明是第一次写入，先加上表头
+    if [ ! -f "$file_yaml" ]; then
+        echo "payload:" > "$file_yaml"
+    fi
+    # 使用追加 (>>) 而不是覆盖 (>)，把规则接在后面
+    sed "s/^/  - '/; s/$/'/" "$work_dir/tmp.txt" >> "$file_yaml"
+    
+    # 2. 生成或追加 lsr
+    file_lsr="$dir_lsr/${base_task}.lsr"
+    # 同样使用追加
+    cat "$work_dir/tmp.txt" >> "$file_lsr"
 
-    # 将后续 MRS 流程的输出路径指向 mrs 专属文件夹
+    # 3. 将后续 MRS 流程的输出路径指向共享的 mrs 专属文件夹
+    # MRS 因为要区分编译类型，文件名依旧保留 $task (如 AdBlock.mrs 和 AdBlock-IP.mrs 不会覆盖)
     output_file="$dir_mrs/${task}.txt"
     classical_file="$dir_mrs/${task}_Classical.yaml"
 
