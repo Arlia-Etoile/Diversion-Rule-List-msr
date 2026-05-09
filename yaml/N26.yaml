@@ -1,0 +1,8 @@
+payload:
+  - DOMAIN,api.tech26.de
+  - DOMAIN,cdn.number26.de
+  - DOMAIN,spc.n26.com
+  - DOMAIN,api.statsig.com
+  - DOMAIN-SUFFIX,device.marketingcloudapis.com
+  - DOMAIN-SUFFIX,usercentrics.eu
+  - DOMAIN-SUFFIX,braze.eu
