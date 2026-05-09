@@ -145,8 +145,8 @@ for task in $task_names; do
         fi
     done
 
-    # 为当前任务创建专属的子文件夹，例如 ./out/AdBlock
-    task_out_dir="$output_dir/$task"
+    # 在输出目录下先建立 mrs 文件夹，再创建专属子文件夹，例如 ./out/mrs/AdBlock
+    task_out_dir="$output_dir/mrs/$task"
     mkdir -p "$task_out_dir"
 
     # 将输出路径指向这个新创建的子文件夹
