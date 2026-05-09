@@ -1,0 +1,42 @@
+name: Auto Generate Subscription Links
+
+# 触发条件
+on:
+  push:
+    branches:
+      - main
+      - yaml
+      - mrs
+      - lsr  # 当这几个分支有文件推送时，自动触发
+  workflow_dispatch: # 允许你在 Actions 页面手动点击运行
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 赋予写入 README.md 的权限
+
+    steps:
+      - name: 检出主分支代码
+        uses: actions/checkout@v4
+        with:
+          ref: main # 无论哪个分支触发，我们都更新主分支的 README
+
+      - name: 配置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 运行转换脚本
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python generate_links.py
+
+      - name: 提交并推送到仓库
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          # 如果文件有变动就提交，没有变动就忽略
+          git commit -m "docs: 自动更新规则订阅短链" || echo "No changes to commit"
+          git push
