@@ -1,6 +1,6 @@
 # Diversion-Rule-List: MRS generator
 
-An automated tool to download, process, and convert various network rule lists, generating rule files in Mihomo Rule Set (MRS) format.
+An automated tool to download, process, and convert various network rule lists, generating rule files in MRS format.
 
 ## Project Structure
 
@@ -14,7 +14,7 @@ An automated tool to download, process, and convert various network rule lists, 
 
 ## Output Files
 
-Each task generates rule files in plain text and mrs (mihomo) formats across their respective branches.
+Each task generates rule files in plain text and mrs formats across their respective branches.
 
 ## Currently Configured Rule Sets
 
