@@ -3,6 +3,9 @@ name: Convert YAML to LSR
 on:
   workflow_dispatch: # 设置为仅支持手动触发运行
 
+permissions:
+  contents: write
+
 jobs:
   convert-and-push:
     runs-on: ubuntu-latest
