@@ -12,6 +12,8 @@
 | `AI-IP` | `MRS` | https://r.arlia.cn.mt/mrs/AI/AI-IP.mrs |
 | `AI` | `MRS` | https://r.arlia.cn.mt/mrs/AI/AI.mrs |
 | `AI_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AI/AI_Classical.yaml |
+| `APNs-IP` | `MRS` | https://r.arlia.cn.mt/mrs/APNs/APNs-IP.mrs |
+| `APNs` | `MRS` | https://r.arlia.cn.mt/mrs/APNs/APNs.mrs |
 | `AdBlock-IP` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock-IP.mrs |
 | `AdBlock` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock.mrs |
 | `AdBlock_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock_Classical.yaml |
@@ -38,6 +40,8 @@
 | `Social-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Social/Social-IP.mrs |
 | `Social` | `MRS` | https://r.arlia.cn.mt/mrs/Social/Social.mrs |
 | `Social_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Social/Social_Classical.yaml |
+| `Speedtest` | `MRS` | https://r.arlia.cn.mt/mrs/Speedtest/Speedtest.mrs |
+| `Speedtest_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Speedtest/Speedtest_Classical.yaml |
 | `Testflight` | `MRS` | https://r.arlia.cn.mt/mrs/Testflight/Testflight.mrs |
 | `Testflight_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Testflight/Testflight_Classical.yaml |
 | `YouTube-IP` | `MRS` | https://r.arlia.cn.mt/mrs/YouTube/YouTube-IP.mrs |
@@ -54,6 +58,7 @@
 | :--- | :---: | :--- |
 | `360` | `LSR` | https://r.arlia.cn.mt/lsr/360/360.lsr |
 | `AI` | `LSR` | https://r.arlia.cn.mt/lsr/AI/AI.lsr |
+| `APNs` | `LSR` | https://r.arlia.cn.mt/lsr/APNs/APNs.lsr |
 | `AdBlock` | `LSR` | https://r.arlia.cn.mt/lsr/AdBlock/AdBlock.lsr |
 | `AppStore` | `LSR` | https://r.arlia.cn.mt/lsr/AppStore/AppStore.lsr |
 | `AppleID` | `LSR` | https://r.arlia.cn.mt/lsr/AppleID/AppleID.lsr |
@@ -68,6 +73,7 @@
 | `Proxy` | `LSR` | https://r.arlia.cn.mt/lsr/Proxy/Proxy.lsr |
 | `Rockstar` | `LSR` | https://r.arlia.cn.mt/lsr/Rockstar/Rockstar.lsr |
 | `Social` | `LSR` | https://r.arlia.cn.mt/lsr/Social/Social.lsr |
+| `Speedtest` | `LSR` | https://r.arlia.cn.mt/lsr/Speedtest/Speedtest.lsr |
 | `Testflight` | `LSR` | https://r.arlia.cn.mt/lsr/Testflight/Testflight.lsr |
 | `YouTube` | `LSR` | https://r.arlia.cn.mt/lsr/YouTube/YouTube.lsr |
 | `YouTubeMusic` | `LSR` | https://r.arlia.cn.mt/lsr/YouTubeMusic/YouTubeMusic.lsr |
@@ -80,6 +86,7 @@
 | :--- | :---: | :--- |
 | `360` | `YAML` | https://r.arlia.cn.mt/yaml/360/360.yaml |
 | `AI` | `YAML` | https://r.arlia.cn.mt/yaml/AI/AI.yaml |
+| `APNs` | `YAML` | https://r.arlia.cn.mt/yaml/APNs/APNs.yaml |
 | `AdBlock` | `YAML` | https://r.arlia.cn.mt/yaml/AdBlock/AdBlock.yaml |
 | `AppStore` | `YAML` | https://r.arlia.cn.mt/yaml/AppStore/AppStore.yaml |
 | `AppleID` | `YAML` | https://r.arlia.cn.mt/yaml/AppleID/AppleID.yaml |
@@ -94,6 +101,7 @@
 | `Proxy` | `YAML` | https://r.arlia.cn.mt/yaml/Proxy/Proxy.yaml |
 | `Rockstar` | `YAML` | https://r.arlia.cn.mt/yaml/Rockstar/Rockstar.yaml |
 | `Social` | `YAML` | https://r.arlia.cn.mt/yaml/Social/Social.yaml |
+| `Speedtest` | `YAML` | https://r.arlia.cn.mt/yaml/Speedtest/Speedtest.yaml |
 | `Testflight` | `YAML` | https://r.arlia.cn.mt/yaml/Testflight/Testflight.yaml |
 | `YouTube` | `YAML` | https://r.arlia.cn.mt/yaml/YouTube/YouTube.yaml |
 | `YouTubeMusic` | `YAML` | https://r.arlia.cn.mt/yaml/YouTubeMusic/YouTubeMusic.yaml |
