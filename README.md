@@ -64,4 +64,4 @@
 本项目目前聚合的规则来源于以下项目：
 
 - [ShuntRules](https://https://github.com/luestr/ShuntRules)
-- [Diversion-Rule-List](https://github.com/Arlia-Etoile/Diversion-Rule-List/tree/main)
+- [Diversion-Rule-List](https://github.com/Arlia-Etoile/Diversion-Rule-List/tree/legacy)
