@@ -145,8 +145,13 @@ for task in $task_names; do
         fi
     done
 
-    output_file="$output_dir/${task}.txt"
-    classical_file="$output_dir/${task}_Classical.yaml"
+    # 为当前任务创建专属的子文件夹，例如 ./out/AdBlock
+    task_out_dir="$output_dir/$task"
+    mkdir -p "$task_out_dir"
+
+    # 将输出路径指向这个新创建的子文件夹
+    output_file="$task_out_dir/${task}.txt"
+    classical_file="$task_out_dir/${task}_Classical.yaml"
     
     echo "字典序排序、去重 (基础清理)"
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
@@ -388,8 +393,8 @@ EOF
             rm -f "$output_file"
         else
             echo "转换为 mrs 格式"
-            $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$output_dir/${task}.mrs"
-            echo "生成文件: ${task}.mrs (文件大小: $(du -h "$output_dir/${task}.mrs" | awk '{print $1}'))"
+            $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$task_out_dir/${task}.mrs"
+            echo "生成文件: ${task}.mrs (文件大小: $(du -h "$task_out_dir/${task}.mrs" | awk '{print $1}'))"
         fi
     fi
     rm -f "$work_dir/tmp.txt"
