@@ -61,3 +61,7 @@ The rules currently aggregated in this project are sourced from the following pr
 
 - [ShuntRules](https://github.com/luestr/ShuntRules)
 - [Diversion-Rule-List](https://github.com/Arlia-Etoile/Diversion-Rule-List/tree/legacy)
+
+## Credits & Acknowledgements
+
+Special thanks to the upstream maintainer [NuoFang6](https://github.com/NuoFang6) and the original project [RuleList](https://github.com/OOM-WG/RuleList) for their outstanding work and maintenance.
