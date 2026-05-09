@@ -10,13 +10,11 @@
 | :--- | :---: | :--- |
 | `360` | `MRS` | https://r.arlia.cn.mt/mrs/360/360.mrs |
 | `AdBlock-IP` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock-IP.mrs |
-| `AdBlock-IP_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock-IP_Classical.yaml |
 | `AdBlock` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock.mrs |
 | `AdBlock_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock_Classical.yaml |
 | `AppStore` | `MRS` | https://r.arlia.cn.mt/mrs/AppStore/AppStore.mrs |
 | `AppleID` | `MRS` | https://r.arlia.cn.mt/mrs/AppleID/AppleID.mrs |
 | `CN-IP` | `MRS` | https://r.arlia.cn.mt/mrs/CN/CN-IP.mrs |
-| `CN-IP_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/CN/CN-IP_Classical.yaml |
 | `CN` | `MRS` | https://r.arlia.cn.mt/mrs/CN/CN.mrs |
 | `CN_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/CN/CN_Classical.yaml |
 | `ClaudeAI` | `MRS` | https://r.arlia.cn.mt/mrs/ClaudeAI/ClaudeAI.mrs |
@@ -24,12 +22,10 @@
 | `Hoyoverse` | `MRS` | https://r.arlia.cn.mt/mrs/Hoyoverse/Hoyoverse.mrs |
 | `Pixiv` | `MRS` | https://r.arlia.cn.mt/mrs/Pixiv/Pixiv.mrs |
 | `Proxy-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Proxy/Proxy-IP.mrs |
-| `Proxy-IP_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Proxy/Proxy-IP_Classical.yaml |
 | `Proxy` | `MRS` | https://r.arlia.cn.mt/mrs/Proxy/Proxy.mrs |
 | `Proxy_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Proxy/Proxy_Classical.yaml |
 | `Rockstar` | `MRS` | https://r.arlia.cn.mt/mrs/Rockstar/Rockstar.mrs |
 | `Social-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Social/Social-IP.mrs |
-| `Social-IP_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Social/Social-IP_Classical.yaml |
 | `Social` | `MRS` | https://r.arlia.cn.mt/mrs/Social/Social.mrs |
 | `Social_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Social/Social_Classical.yaml |
 | `Testflight` | `MRS` | https://r.arlia.cn.mt/mrs/Testflight/Testflight.mrs |
