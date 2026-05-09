@@ -36,7 +36,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add README.md
-          # 如果文件有变动就提交，没有变动就忽略
-          git commit -m "docs: 自动更新规则订阅短链" || echo "No changes to commit"
+          git add LINKS.md
+          git commit -m "docs: update subscription links in LINKS.md" || echo "No changes to commit"
           git push
