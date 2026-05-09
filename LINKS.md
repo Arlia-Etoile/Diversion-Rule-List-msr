@@ -24,6 +24,12 @@
 | `GamePF` | `MRS` | https://r.arlia.cn.mt/mrs/GamePF/GamePF.mrs |
 | `GamePF_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/GamePF/GamePF_Classical.yaml |
 | `Hoyoverse` | `MRS` | https://r.arlia.cn.mt/mrs/Hoyoverse/Hoyoverse.mrs |
+| `Microsoft` | `MRS` | https://r.arlia.cn.mt/mrs/Microsoft/Microsoft.mrs |
+| `Microsoft_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Microsoft/Microsoft_Classical.yaml |
+| `Onedrive` | `MRS` | https://r.arlia.cn.mt/mrs/Onedrive/Onedrive.mrs |
+| `Onedrive_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Onedrive/Onedrive_Classical.yaml |
+| `PayPal` | `MRS` | https://r.arlia.cn.mt/mrs/PayPal/PayPal.mrs |
+| `PayPal_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/PayPal/PayPal_Classical.yaml |
 | `Pixiv` | `MRS` | https://r.arlia.cn.mt/mrs/Pixiv/Pixiv.mrs |
 | `Proxy-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Proxy/Proxy-IP.mrs |
 | `Proxy` | `MRS` | https://r.arlia.cn.mt/mrs/Proxy/Proxy.mrs |
@@ -37,6 +43,8 @@
 | `YouTube-IP` | `MRS` | https://r.arlia.cn.mt/mrs/YouTube/YouTube-IP.mrs |
 | `YouTube` | `MRS` | https://r.arlia.cn.mt/mrs/YouTube/YouTube.mrs |
 | `YouTube_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/YouTube/YouTube_Classical.yaml |
+| `YouTubeMusic` | `MRS` | https://r.arlia.cn.mt/mrs/YouTubeMusic/YouTubeMusic.mrs |
+| `YouTubeMusic_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/YouTubeMusic/YouTubeMusic_Classical.yaml |
 | `iCloudCN` | `MRS` | https://r.arlia.cn.mt/mrs/iCloudCN/iCloudCN.mrs |
 | `iOS_Updates` | `MRS` | https://r.arlia.cn.mt/mrs/iOS_Updates/iOS_Updates.mrs |
 
@@ -53,12 +61,16 @@
 | `ClaudeAI` | `LSR` | https://r.arlia.cn.mt/lsr/ClaudeAI/ClaudeAI.lsr |
 | `GamePF` | `LSR` | https://r.arlia.cn.mt/lsr/GamePF/GamePF.lsr |
 | `Hoyoverse` | `LSR` | https://r.arlia.cn.mt/lsr/Hoyoverse/Hoyoverse.lsr |
+| `Microsoft` | `LSR` | https://r.arlia.cn.mt/lsr/Microsoft/Microsoft.lsr |
+| `Onedrive` | `LSR` | https://r.arlia.cn.mt/lsr/Onedrive/Onedrive.lsr |
+| `PayPal` | `LSR` | https://r.arlia.cn.mt/lsr/PayPal/PayPal.lsr |
 | `Pixiv` | `LSR` | https://r.arlia.cn.mt/lsr/Pixiv/Pixiv.lsr |
 | `Proxy` | `LSR` | https://r.arlia.cn.mt/lsr/Proxy/Proxy.lsr |
 | `Rockstar` | `LSR` | https://r.arlia.cn.mt/lsr/Rockstar/Rockstar.lsr |
 | `Social` | `LSR` | https://r.arlia.cn.mt/lsr/Social/Social.lsr |
 | `Testflight` | `LSR` | https://r.arlia.cn.mt/lsr/Testflight/Testflight.lsr |
 | `YouTube` | `LSR` | https://r.arlia.cn.mt/lsr/YouTube/YouTube.lsr |
+| `YouTubeMusic` | `LSR` | https://r.arlia.cn.mt/lsr/YouTubeMusic/YouTubeMusic.lsr |
 | `iCloudCN` | `LSR` | https://r.arlia.cn.mt/lsr/iCloudCN/iCloudCN.lsr |
 | `iOS_Updates` | `LSR` | https://r.arlia.cn.mt/lsr/iOS_Updates/iOS_Updates.lsr |
 
@@ -75,12 +87,16 @@
 | `ClaudeAI` | `YAML` | https://r.arlia.cn.mt/yaml/ClaudeAI/ClaudeAI.yaml |
 | `GamePF` | `YAML` | https://r.arlia.cn.mt/yaml/GamePF/GamePF.yaml |
 | `Hoyoverse` | `YAML` | https://r.arlia.cn.mt/yaml/Hoyoverse/Hoyoverse.yaml |
+| `Microsoft` | `YAML` | https://r.arlia.cn.mt/yaml/Microsoft/Microsoft.yaml |
+| `Onedrive` | `YAML` | https://r.arlia.cn.mt/yaml/Onedrive/Onedrive.yaml |
+| `PayPal` | `YAML` | https://r.arlia.cn.mt/yaml/PayPal/PayPal.yaml |
 | `Pixiv` | `YAML` | https://r.arlia.cn.mt/yaml/Pixiv/Pixiv.yaml |
 | `Proxy` | `YAML` | https://r.arlia.cn.mt/yaml/Proxy/Proxy.yaml |
 | `Rockstar` | `YAML` | https://r.arlia.cn.mt/yaml/Rockstar/Rockstar.yaml |
 | `Social` | `YAML` | https://r.arlia.cn.mt/yaml/Social/Social.yaml |
 | `Testflight` | `YAML` | https://r.arlia.cn.mt/yaml/Testflight/Testflight.yaml |
 | `YouTube` | `YAML` | https://r.arlia.cn.mt/yaml/YouTube/YouTube.yaml |
+| `YouTubeMusic` | `YAML` | https://r.arlia.cn.mt/yaml/YouTubeMusic/YouTubeMusic.yaml |
 | `iCloudCN` | `YAML` | https://r.arlia.cn.mt/yaml/iCloudCN/iCloudCN.yaml |
 | `iOS_Updates` | `YAML` | https://r.arlia.cn.mt/yaml/iOS_Updates/iOS_Updates.yaml |
 
