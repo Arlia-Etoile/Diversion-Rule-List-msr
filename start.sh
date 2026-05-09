@@ -147,7 +147,7 @@ for task in $task_names; do
     # 3. 将后续 MRS 流程的输出路径指向共享的 mrs 专属文件夹
     # MRS 因为要区分编译类型，文件名依旧保留 $task (如 AdBlock.mrs 和 AdBlock-IP.mrs 不会覆盖)
     output_file="$dir_mrs/${task}.txt"
-    classical_file="$dir_mrs/${task}_Classical.yaml"
+    classical_file="$dir_mrs/${base_task}_Classical.yaml"
 
     echo "分离非 Domain/IP 的其他规则 (为 MRS 流程准备)..."
     rm -f "$work_dir/other_rules.tmp" "$work_dir/clean_tmp.txt"
@@ -167,9 +167,13 @@ for task in $task_names; do
     fi
 
     if [ -s "$work_dir/other_rules.tmp" ]; then
-        echo "  -> 发现非标准规则，整合生成: ${task}_Classical.yaml"
-        echo "payload:" > "$classical_file"
-        sort -u "$work_dir/other_rules.tmp" >> "$classical_file"
+    echo "  -> 发现非标准规则，整合追加到: ${base_task}_Classical.yaml"
+
+        if [ ! -f "$classical_file" ]; then
+            echo "payload:" > "$classical_file"
+        fi
+
+    sort -u "$work_dir/other_rules.tmp" >> "$classical_file"
     fi
 
     task_type=$(yq -r ".tasks.$task.type" "$config_file")
