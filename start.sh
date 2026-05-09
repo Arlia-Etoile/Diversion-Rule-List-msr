@@ -30,7 +30,6 @@ if [ -z "$api_url" ] || [ "$api_url" == "null" ]; then
 fi
 
 echo "正在获取 API 信息..."
-# 增加 -L 以跟随重定向，-f 以在 HTTP 错误时失败
 if [ -n "$GITHUB_TOKEN" ]; then
   AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 else
@@ -42,55 +41,34 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 使用 jq -c 强制单行输出，确保 head -n 1 截取的是完整的一行 JSON 对象
 asset_info=$(echo "$api_response" | jq -c ".[] | .assets[] | select(.name | startswith(\"$start_with\") and endswith(\"$end_with\"))" | head -n 1)
 if [ -z "$asset_info" ] || [ "$asset_info" == "null" ]; then
-    echo "错误: 未找到符合条件 ($start_with ... $end_with) 的资源。"
+    echo "错误: 未找到符合条件的资源。"
     exit 1
 fi
-echo "解析到的资源信息: $asset_info"
 
 download_url=$(echo "$asset_info" | jq -r '.browser_download_url')
-echo "下载链接: $download_url"
-
-# 处理 digest，兼容带 sha256: 前缀或不带的情况
 expected_digest=$(echo "$asset_info" | jq -r '.digest' | cut -d ':' -f 2)
-echo "预期校验和: $expected_digest"
 
 if [ -z "$download_url" ] || [ "$download_url" == "null" ]; then
     echo "错误: JSON 中未找到下载链接。"
     exit 1
 fi
 
-echo "开始下载: $download_url"
+echo "开始下载 Mihomo..."
 wget -q -O "$work_dir/mihomo.gz" "$download_url"
-if [ $? -ne 0 ]; then
-    echo "错误: 下载文件失败。"
-    exit 1
-fi
 
-echo "验证下载的文件"
-# sha256sum 输出格式为 "hash  filename"，awk '{print $1}' 取第一列
 actual_digest=$(sha256sum "$work_dir/mihomo.gz" | awk '{print $1}')
-
 if [ "$actual_digest" != "$expected_digest" ]; then
     echo "错误: 文件校验失败！"
-    echo "预期: $expected_digest"
-    echo "实际: $actual_digest"
     exit 1
 fi
-echo "文件校验成功。"
 
 echo "正在解压..."
 gunzip -f "$work_dir/mihomo.gz"
-if [ $? -ne 0 ]; then
-    echo "错误: 解压文件失败。"
-    exit 1
-fi
-
 chmod +x "$work_dir/mihomo"
-echo "Mihomo 已就绪: $work_dir/mihomo"
 
+# ========== 重点修改区：建立三个独立的输出目录 ==========
 out_mrs="./out_mrs"
 out_yaml="./out_yaml"
 out_lsr="./out_lsr"
@@ -99,24 +77,18 @@ mkdir -p "$out_mrs" "$out_yaml" "$out_lsr"
 
 
 echo "开始处理任务..."
-# 遍历 tasks 下的所有键名
 task_names=$(yq -r '.tasks | keys | .[]' "$config_file")
 
 for task in $task_names; do
     echo "---------------------------------------"
     echo "正在处理任务: $task"
 
-    # 获取该 task 的所有下载链接
     urls=$(yq -r ".tasks.$task.src[]" "$config_file")
-
-    # 如果 YAML 中没有 custom_script，yq 可能会返回 null，这里做处理
     custom_script_content=$(yq -r ".tasks.$task.custom_script" "$config_file")
     
-    # 在 Bash 中判断：如果是 null 则视为空字符串
     if [ "$custom_script_content" == "null" ]; then
         custom_script_content=""
     fi
-    
     export CUSTOM_SCRIPT="$custom_script_content"
 
     for url in $urls; do
@@ -129,14 +101,9 @@ for task in $task_names; do
             exit 1
         fi
 
-        # 处理不同格式
-        sed -i -e '$a\' "$download_path"  # 确保文件以换行符结尾
+        sed -i -e '$a\' "$download_path"
 
         if [[ "$filename" == "pihole.txt" ]]; then
-            echo "   -> 检测到 pihole.txt，正在添加 (+.) 前缀..."
-            # 逻辑说明：
-            # s/^/+./  : 将行首 (^) 替换为 (+.)
-            # 仅对不以 # 开头的行操作，防止破坏注释
             sed -i '/^[a-zA-Z0-9]/ s/^/+./' "$download_path"
         fi
 
@@ -157,24 +124,21 @@ for task in $task_names; do
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
     sort -u "$work_dir/tmp.txt" -o "$work_dir/tmp.txt"
 
-    echo "-> 执行纯整合：生成 .yaml 和 .lsr (不分离关键字规则)"
-    
-    # 1. 生成 yaml：添加 payload 表头，并为每行添加 yaml 列表项前缀和单引号
+    echo "-> 执行纯整合：生成 .yaml 和 .lsr"
+    # 生成 yaml：添加 payload 表头，并为每行添加 yaml 列表项前缀和单引号
     echo "payload:" > "$dir_yaml/${task}.yaml"
     sed "s/^/  - '/; s/$/'/" "$work_dir/tmp.txt" >> "$dir_yaml/${task}.yaml"
     
-    # 2. 生成 lsr：Loon 规则集支持纯文本列表，直接复制即可
+    # 生成 lsr：Loon 规则集支持纯文本列表，直接复制即可
     cp "$work_dir/tmp.txt" "$dir_lsr/${task}.lsr"
 
-    # 3. 将后续 MRS 流程的输出路径指向 mrs 专属文件夹
+    # 将后续 MRS 流程的输出路径指向 mrs 专属文件夹
     output_file="$dir_mrs/${task}.txt"
     classical_file="$dir_mrs/${task}_Classical.yaml"
 
     echo "分离非 Domain/IP 的其他规则 (为 MRS 流程准备)..."
     rm -f "$work_dir/other_rules.tmp" "$work_dir/clean_tmp.txt"
     
-    # 核心提取逻辑：匹配带有大写字母和逗号的 Clash 规则，但放过 DOMAIN, DOMAIN-SUFFIX, IP-CIDR, IP-CIDR6
-    # 纯域名(无逗号)和纯IP(无逗号)也不会被拦截，会正常进入 clean_tmp.txt
     awk '
     /^[A-Z0-9-]+,/ && !/^(DOMAIN,|DOMAIN-SUFFIX,|IP-CIDR,|IP-CIDR6,)/ {
         print "  - " $0 >> "'"$work_dir/other_rules.tmp"'"
@@ -183,18 +147,15 @@ for task in $task_names; do
     { print $0 >> "'"$work_dir/clean_tmp.txt"'" }
     ' "$work_dir/tmp.txt"
 
-    # 将清洗后的主干内容覆盖回 tmp.txt，供后续的 Python 脚本继续处理纯 Domain/IP
     if [ -f "$work_dir/clean_tmp.txt" ]; then
         mv "$work_dir/clean_tmp.txt" "$work_dir/tmp.txt"
     else
         > "$work_dir/tmp.txt"
     fi
 
-    # 如果分离出了特殊规则，将其按 Mihomo yaml 格式写入文件
     if [ -s "$work_dir/other_rules.tmp" ]; then
         echo "  -> 发现非标准规则，整合生成: ${task}_Classical.yaml"
         echo "payload:" > "$classical_file"
-        # 对特殊规则进行去重并追加
         sort -u "$work_dir/other_rules.tmp" >> "$classical_file"
     fi
 
@@ -202,33 +163,26 @@ for task in $task_names; do
 
     if [ "$task_type" == "ipcidr" ]; then
         behavior="ipcidr"
-        echo "类型：由配置强制指定为 IP/CIDR 网段 (启用语义合并)"
+        echo "类型：IP/CIDR"
     elif [ "$task_type" == "domain" ]; then
         behavior="domain"
-        echo "类型：由配置强制指定为 域名列表"
+        echo "类型：域名列表"
     else
-        # 兜底逻辑：如果未指定，读取第一行用于判断类型
         first_line=$(head -n 1 "$work_dir/tmp.txt")
         if [[ "$first_line" =~ [:/] ]]; then
             behavior="ipcidr"
-            echo "类型：自动识别为 IP/CIDR 网段 (启用语义合并)"
         else
             behavior="domain"
-            echo "类型：自动识别为 域名列表"
         fi
     fi
 
-    # 使用 behavior 变量进行后续判断
     if [ "$behavior" == "ipcidr" ]; then
-        # 使用 Python ipaddress 模块进行 CIDR 合并
         python3 - "$work_dir/tmp.txt" "$output_file" <<-'EOF'
 import sys
 import ipaddress
 
 input_path = sys.argv[1]
 output_path = sys.argv[2]
-print(f"Python (IP模式) 正在读取: {input_path}")
-
 ipv4_nets = []
 ipv6_nets = []
 
@@ -238,72 +192,46 @@ try:
             line = line.strip()
             if not line: continue
             try:
-                # 兼容 Classical 格式：提取 IP-CIDR,1.1.1.1/24,no-resolve 中的 IP
                 if "IP-CIDR" in line.upper():
                     parts = line.split(',')
                     if len(parts) >= 2:
                         line = parts[1].strip()
-                # strict=False 允许非规范写法，例如 192.168.1.5/24 会自动修正为网段地址 192.168.1.0/24
                 net = ipaddress.ip_network(line, strict=False)
                 if net.version == 4:
                     ipv4_nets.append(net)
                 else:
                     ipv6_nets.append(net)
             except ValueError:
-                # 遇到非 IP 格式的行（可能是误判的域名），静默跳过或打印警告
-                # print(f"忽略无效 IP: {line}")
                 pass
 
-    # 核心逻辑：collapse_addresses 会自动去除包含关系并合并相邻网段
-    # 例如：1.1.1.1/32 被包含在 1.1.1.0/24 中，前者会被移除
-    # 例如：1.0.0.0/25 和 1.0.0.128/25 会被合并为 1.0.0.0/24
     merged_v4 = list(ipaddress.collapse_addresses(ipv4_nets))
     merged_v6 = list(ipaddress.collapse_addresses(ipv6_nets))
-
-    # 排序
     merged_v4.sort()
     merged_v6.sort()
 
-    print(f"Python (IP模式) 正在写入: {output_path}")
     with open(output_path, 'w', encoding='utf-8', newline='\n') as f:
         for net in merged_v4:
             f.write(str(net) + '\n')
         for net in merged_v6:
             f.write(str(net) + '\n')
 
-except FileNotFoundError:
-    print(f"错误: 找不到文件 {input_path}")
-    sys.exit(1)
 except Exception as e:
-    print(f"发生未知错误: {e}")
+    print(f"发生错误: {e}")
     sys.exit(1)
 EOF
-        # 检查 Python 退出代码
-        if [ $? -eq 0 ]; then
-            echo "生成文件: $output_file (总行数: $(wc -l < "$output_file"))"
-        else
-            echo "错误：IP 处理脚本执行失败"
-            exit 1
-        fi
-
     else
-        echo "类型：域名列表"
-        behavior="domain"
-
-        # 让 Python 全权负责：读取 -> 清洗 -> 逻辑去重 -> 写入
         python3 - "$work_dir/tmp.txt" "$output_file" <<-'EOF'
 import sys
 import re
 import os
-from collections import defaultdict
+
 input_path = sys.argv[1]
 output_path = sys.argv[2]
-print(f"Python (域名模式) 正在读取: {input_path}")
+
 def get_clean_domain(domain_str):
-    # 去除 +. *. . 等前缀，只保留纯域名用于逻辑判断
     return re.sub(r'^[\+\*\.]+', '', domain_str)
+
 try:
-    # 1. 读取文件
     raw_lines = []
     with open(input_path, 'r', encoding='utf-8') as f:
         for line in f:
@@ -311,25 +239,20 @@ try:
             if line:
                 raw_lines.append(line)
     
-    # 2. 基础去重与排序 (父子域名逻辑)
-    # 先按长度排序
     raw_lines.sort()
     raw_lines.sort(key=lambda x: len(get_clean_domain(x)))
 
-    # 4. 智能去重逻辑    
     roots = set()
-    domains = [] # 这个变量将暴露给自定义脚本使用
+    domains = []
     
     for line in raw_lines:
         clean_domain = get_clean_domain(line)
         parts = clean_domain.split('.')
         is_redundant = False
         
-        # 自身查重
         if clean_domain in roots:
             is_redundant = True
         else:
-            # 父级查重
             for i in range(1, len(parts)):
                 parent = ".".join(parts[i:])
                 if parent in roots:
@@ -339,86 +262,45 @@ try:
         if not is_redundant:
             domains.append(line)
             roots.add(clean_domain)
-    # 执行 YAML 中的自定义脚本
+
     custom_code = os.environ.get('CUSTOM_SCRIPT', '')
     if custom_code and custom_code.strip() != "":
         try:
-            # 使用 exec 执行字符串代码，传入 domains 变量
-            # 用户在 YAML 中可以直接操作 domains 列表
             exec_globals = {}
-            exec_locals = {'domains': domains, 're': re}
+            exec_locals = {'domains': domains, 're': re, 'ipaddress': __import__('ipaddress')}
             exec(custom_code, exec_globals, exec_locals)
-            
-            #以此取回修改后的列表
             domains = exec_locals['domains']
-            print(f"  -> 自定义脚本执行完毕")
         except Exception as e:
-            print(f"  -> [警告] 自定义脚本执行失败: {e}")
-            # 即使脚本失败，也继续往下走，不要中断整个流程
-    # 泛滥子域检测警告
-    # 逻辑：取域名的后缀（去掉第一段），统计出现次数
-    suffix_counter = defaultdict(int)
-    for line in domains:
-        clean = get_clean_domain(line)
-        parts = clean.split('.')
+            pass
 
-        # 如果域名层级少于 4，跳过检查
-        if len(parts) < 4:
-            continue
-        # 获取父级域名（去掉最左边的一段）
-        suffix = ".".join(parts[1:])
-        suffix_counter[suffix] += 1
-    
-    warned = False
-    sorted_suffixes = sorted(suffix_counter.items(), key=lambda x: x[1], reverse=True)
-    for suffix, count in sorted_suffixes:
-        if count >= 17: # 阈值可调整
-            if not warned:
-                print("  -> [注意] 检测到以下后缀包含大量子域名:")
-                warned = True
-            print(f"     Suffix: .{suffix} (包含 {count} 个条目)")
-    # 5. 写入文件
-    print(f"Python (域名模式) 正在写入: {output_path}")
     with open(output_path, 'w', encoding='utf-8', newline='\n') as f:
         f.write("\n".join(domains))
         f.write("\n")
-except FileNotFoundError:
-    print(f"错误: 找不到文件 {input_path}")
-    sys.exit(1)
+
 except Exception as e:
-    print(f"发生未知错误: {e}")
+    print(f"发生错误: {e}")
     sys.exit(1)
 EOF
-        if [ $? -eq 0 ]; then
-            echo "生成文件: $output_file (总行数: $(wc -l < "$output_file"))"
-        else
-            echo "错误：域名脚本执行失败"
-            exit 1
-        fi
     fi
-
 
     need_mrs=$(yq -r ".tasks.$task.format" "$config_file" | grep -q "mrs" && echo "true" || echo "false")
     if [ "$need_mrs" == "true" ]; then
-        # 新增判断：如果输出文件为空（即行数为0或文件不存在），则跳过转换，防止 mihomo 崩溃
         if [ ! -s "$output_file" ]; then
             echo "  -> [跳过] 提取到的规则数量为 0，放弃生成 ${task}.mrs"
-            # 顺手把没用的空 txt 文件删掉，保持 output 目录干净
             rm -f "$output_file"
         else
             echo "转换为 mrs 格式"
-            $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$task_out_dir/${task}.mrs"
-            echo "生成文件: ${task}.mrs (文件大小: $(du -h "$task_out_dir/${task}.mrs" | awk '{print $1}'))"
+            # 路径已修复为 $dir_mrs
+            $work_dir/mihomo convert-ruleset $behavior text "$output_file" "$dir_mrs/${task}.mrs"
         fi
     fi
     rm -f "$work_dir/tmp.txt"
 done
 
 echo "---------------------------------------"
-echo "所有任务处理完成！"
+echo "所有任务处理完成，准备部署！"
 echo "---------------------------------------"
 
-release_branch=$(yq -r '.git.release_branch' "$config_file")
 max_history=$(yq -r '.git.max_history' "$config_file")
 
 if [ -n "$GITHUB_TOKEN" ]; then
@@ -428,7 +310,7 @@ fi
 
 remote_url=$(git config --get remote.origin.url)
 
-# 定义自动化部署函数
+# 通用部署函数
 deploy_to_branch() {
     local source_folder="$1"
     local target_branch="$2"
@@ -439,7 +321,7 @@ deploy_to_branch() {
     local temp_repo="$work_dir/temp_repo_$target_branch"
     rm -rf "$temp_repo" || true
     
-    echo "正在克隆/初始化目标分支..."
+    echo "正在拉取分支..."
     if git clone -q --filter=blob:none --branch "$target_branch" "$remote_url" "$temp_repo" 2>/dev/null; then
         echo "成功拉取远程分支 $target_branch"
     else
@@ -452,14 +334,13 @@ deploy_to_branch() {
         cd - > /dev/null
     fi
     
-    # 复制生成的文件到 git 目录
     find "$temp_repo" -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
     cp -r "$source_folder"/* "$temp_repo/"
     
     cd "$temp_repo"
     git add .
     if git diff --staged --quiet; then
-        echo "分支 $target_branch 无变化，跳过提交。"
+        echo "分支 $target_branch 无变化，跳过。"
         cd - > /dev/null
         return 0
     fi
@@ -479,21 +360,19 @@ deploy_to_branch() {
     fi
     
     if [ -n "$GITHUB_TOKEN" ]; then
-        # 去除已有的 token，防止重复拼接导致格式错误
         local clean_url=$(echo "$remote_url" | sed -E 's/https:\/\/[^@]+@/https:\/\//')
         local auth_url=$(echo "$clean_url" | sed "s/https:\/\//https:\/\/x-access-token:$GITHUB_TOKEN@/")
         git remote set-url origin "$auth_url"
     fi
     
-    echo "正在推送 $target_branch 到 GitHub..."
+    echo "推送到 GitHub ($target_branch)..."
     git push $push_args origin "$target_branch"
     cd - > /dev/null
 }
 
-# 依次执行三个分支的部署
+# 调用部署函数
 deploy_to_branch "$out_mrs" "mrs"
 deploy_to_branch "$out_yaml" "yaml"
 deploy_to_branch "$out_lsr" "lsr"
 
-echo "======================================="
-echo "全部流程执行完毕！"
+echo "部署完毕！"
