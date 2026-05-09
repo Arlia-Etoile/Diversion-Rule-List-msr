@@ -1,2 +1,4 @@
 # Diversion-Rule-List
-Rules for Loon&Qx
+Rules for Loon&Clash
+
+These are migrated and merged from the legacy repository.
