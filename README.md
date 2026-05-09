@@ -1,67 +1,62 @@
-# MRS 规则集生成器
+# Diversion-Rule-List: MRS generator
 
-一个自动化工具，用于下载、处理和转换各种网络规则列表，并生成 Mihomo Rule Set (MRS) 格式的规则文件。
+An automated tool to download, process, and convert various network rule lists, generating rule files in Mihomo Rule Set (MRS) format.
 
-## 项目结构
+## Project Structure
 
-```
+```text
 .
 |-- LICENSE
 |-- README.md
-|-- config.yaml   # 配置文件
-`-- start.sh      # 主脚本
-```
+|-- config.yaml   # Configuration file
+`-- start.sh      # Main script
 
-## 输出文件
+## Output Files
 
-每个任务会在 **`mrs`分支** 里生成 纯文本 和 mrs (mihomo)格式的文件  
+Each task generates rule files in plain text and mrs (mihomo) formats across their respective branches.
 
-## 当前配置的规则集
+## Currently Configured Rule Sets
 
-| 规则集 | 类型  | 说明                               |
-| ------ | ----- | ---------------------------------- |
-| `ad`   | 域名  | 广告过滤规则，整合多个广告拦截列表 |
-| `cn`   | 域名  | 中国大陆域名规则                   |
-| `cnIP` | IP 段 | 中国大陆 IP 地址段                 |
+> This section is automatically updated by GitHub Actions. You can directly copy the links below to your proxy clients.
 
-## 依赖
-`yq jq curl wget gunzip sha256sum python`  
+## Dependencies
+
+`yq jq curl wget gunzip sha256sum python`
 
 ## GitHub Actions
 
-项目配置了自动化工作流 [`.github/workflows/mrs.yml`](.github/workflows/mrs.yml)：
+The project is configured with an automated workflow [`.github/workflows/mrs.yml`](.github/workflows/mrs.yml):
 
-- 每天北京时间 3 点 45 分自动运行，可通过 GitHub 界面手动触发，可配置保留历史数量
+- Runs automatically every day at 03:45 (UTC+8). It can also be triggered manually via the GitHub interface. The number of retained historical runs is configurable.
 
+## License
 
-## 许可证
+This project uses the GPL-3.0 License. See the [LICENSE](LICENSE) file for details.
 
-本项目使用 GPL-3.0 许可证。详见 [LICENSE](LICENSE) 文件。
+### 🔴 Mandatory Requirements
 
-### 🔴 强制要求
+- **Must be Open Source**: Any software using this project's code must be open source.
+- **Same License**: Derivative works must use the GPL-3.0 or a compatible license.
+- **Provide Source Code**: When distributing binary files, the source code must also be provided.
+- **Retain Copyright**: The original copyright notice and license text must be retained.
 
-- **必须开源**：任何使用本项目代码的软件都必须开源
-- **相同许可证**：衍生作品必须使用 GPL-3.0 或兼容许可证
-- **提供源码**：分发二进制文件时必须同时提供源代码
-- **保留版权**：必须保留原始版权声明和许可证文本
+### 🚫 Prohibited Actions
 
-### 🚫 禁止行为
+- ❌ Using this project's code in closed-source commercial software.
+- ❌ Deleting or modifying the license declaration.
+- ❌ Claiming proprietary rights to this project.
+- ❌ Statically linking this project's code in proprietary software.
 
-- ❌ 将本项目代码用于闭源商业软件
-- ❌ 删除或修改许可证声明
-- ❌ 声称拥有本项目的专有权利
-- ❌ 在专有软件中静态链接本项目代码
+### ✅ Permitted Actions
 
-### ✅ 允许行为
+- ✅ Free to use, modify, and distribute.
+- ✅ Use in open-source projects.
+- ✅ Commercial use (but must remain open source).
+- ✅ Call via network API (the caller does not need to be open source).
 
-- ✅ 自由使用、修改、分发
-- ✅ 用于开源项目
-- ✅ 商业使用（但必须开源）
-- ✅ 通过网络 API 调用（无需开源调用方）
+## Rule Sources
 
-## 规则源说明
+The rules currently aggregated in this project are sourced from the following projects:
 
-本项目目前聚合的规则来源于以下项目：
-
-- [ShuntRules](https://https://github.com/luestr/ShuntRules)
+- [ShuntRules](https://github.com/luestr/ShuntRules)
 - [Diversion-Rule-List](https://github.com/Arlia-Etoile/Diversion-Rule-List/tree/legacy)
