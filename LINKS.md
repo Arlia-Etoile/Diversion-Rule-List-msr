@@ -19,10 +19,10 @@
 | `AdBlock_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock_Classical.yaml |
 | `AppStore` | `MRS` | https://r.arlia.cn.mt/mrs/AppStore/AppStore.mrs |
 | `AppleID` | `MRS` | https://r.arlia.cn.mt/mrs/AppleID/AppleID.mrs |
-| `CN-IP` | `MRS` | https://r.arlia.cn.mt/mrs/CN/CN-IP.mrs |
-| `CN` | `MRS` | https://r.arlia.cn.mt/mrs/CN/CN.mrs |
-| `CN_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/CN/CN_Classical.yaml |
+| `Bank_CN` | `MRS` | https://r.arlia.cn.mt/mrs/Bank_CN/Bank_CN.mrs |
 | `ClaudeAI` | `MRS` | https://r.arlia.cn.mt/mrs/ClaudeAI/ClaudeAI.mrs |
+| `Direct` | `MRS` | https://r.arlia.cn.mt/mrs/Direct/Direct.mrs |
+| `Direct_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Direct/Direct_Classical.yaml |
 | `GamePF` | `MRS` | https://r.arlia.cn.mt/mrs/GamePF/GamePF.mrs |
 | `GamePF_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/GamePF/GamePF_Classical.yaml |
 | `Hoyoverse` | `MRS` | https://r.arlia.cn.mt/mrs/Hoyoverse/Hoyoverse.mrs |
@@ -62,8 +62,9 @@
 | `AdBlock` | `LSR` | https://r.arlia.cn.mt/lsr/AdBlock/AdBlock.lsr |
 | `AppStore` | `LSR` | https://r.arlia.cn.mt/lsr/AppStore/AppStore.lsr |
 | `AppleID` | `LSR` | https://r.arlia.cn.mt/lsr/AppleID/AppleID.lsr |
-| `CN` | `LSR` | https://r.arlia.cn.mt/lsr/CN/CN.lsr |
+| `Bank_CN` | `LSR` | https://r.arlia.cn.mt/lsr/Bank_CN/Bank_CN.lsr |
 | `ClaudeAI` | `LSR` | https://r.arlia.cn.mt/lsr/ClaudeAI/ClaudeAI.lsr |
+| `Direct` | `LSR` | https://r.arlia.cn.mt/lsr/Direct/Direct.lsr |
 | `GamePF` | `LSR` | https://r.arlia.cn.mt/lsr/GamePF/GamePF.lsr |
 | `Hoyoverse` | `LSR` | https://r.arlia.cn.mt/lsr/Hoyoverse/Hoyoverse.lsr |
 | `Microsoft` | `LSR` | https://r.arlia.cn.mt/lsr/Microsoft/Microsoft.lsr |
@@ -90,8 +91,9 @@
 | `AdBlock` | `YAML` | https://r.arlia.cn.mt/yaml/AdBlock/AdBlock.yaml |
 | `AppStore` | `YAML` | https://r.arlia.cn.mt/yaml/AppStore/AppStore.yaml |
 | `AppleID` | `YAML` | https://r.arlia.cn.mt/yaml/AppleID/AppleID.yaml |
-| `CN` | `YAML` | https://r.arlia.cn.mt/yaml/CN/CN.yaml |
+| `Bank_CN` | `YAML` | https://r.arlia.cn.mt/yaml/Bank_CN/Bank_CN.yaml |
 | `ClaudeAI` | `YAML` | https://r.arlia.cn.mt/yaml/ClaudeAI/ClaudeAI.yaml |
+| `Direct` | `YAML` | https://r.arlia.cn.mt/yaml/Direct/Direct.yaml |
 | `GamePF` | `YAML` | https://r.arlia.cn.mt/yaml/GamePF/GamePF.yaml |
 | `Hoyoverse` | `YAML` | https://r.arlia.cn.mt/yaml/Hoyoverse/Hoyoverse.yaml |
 | `Microsoft` | `YAML` | https://r.arlia.cn.mt/yaml/Microsoft/Microsoft.yaml |
