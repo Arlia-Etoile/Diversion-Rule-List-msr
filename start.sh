@@ -146,10 +146,40 @@ for task in $task_names; do
     done
 
     output_file="$output_dir/${task}.txt"
-    echo "字典序排序、去重 (智能语义过滤)"
+    classical_file="$output_dir/${task}_Classical.yaml"
+    
+    echo "字典序排序、去重 (基础清理)"
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
 
-   task_type=$(yq -r ".tasks.$task.type" "$config_file")
+    echo "分离非 Domain/IP 的其他规则 (如 KEYWORD, PROCESS-NAME 等)..."
+    rm -f "$work_dir/other_rules.tmp" "$work_dir/clean_tmp.txt"
+    
+    # 核心提取逻辑：匹配带有大写字母和逗号的 Clash 规则，但放过 DOMAIN, DOMAIN-SUFFIX, IP-CIDR, IP-CIDR6
+    # 纯域名(无逗号)和纯IP(无逗号)也不会被拦截，会正常进入 clean_tmp.txt
+    awk '
+    /^[A-Z0-9-]+,/ && !/^(DOMAIN,|DOMAIN-SUFFIX,|IP-CIDR,|IP-CIDR6,)/ {
+        print "  - " $0 >> "'"$work_dir/other_rules.tmp"'"
+        next
+    }
+    { print $0 >> "'"$work_dir/clean_tmp.txt"'" }
+    ' "$work_dir/tmp.txt"
+
+    # 将清洗后的主干内容覆盖回 tmp.txt，供后续的 Python 脚本继续处理纯 Domain/IP
+    if [ -f "$work_dir/clean_tmp.txt" ]; then
+        mv "$work_dir/clean_tmp.txt" "$work_dir/tmp.txt"
+    else
+        > "$work_dir/tmp.txt"
+    fi
+
+    # 如果分离出了特殊规则，将其按 Mihomo yaml 格式写入文件
+    if [ -s "$work_dir/other_rules.tmp" ]; then
+        echo "  -> 发现非标准规则，整合生成: ${task}_Classical.yaml"
+        echo "payload:" > "$classical_file"
+        # 对特殊规则进行去重并追加
+        sort -u "$work_dir/other_rules.tmp" >> "$classical_file"
+    fi
+
+    task_type=$(yq -r ".tasks.$task.type" "$config_file")
 
     if [ "$task_type" == "ipcidr" ]; then
         behavior="ipcidr"
