@@ -147,18 +147,30 @@ for task in $task_names; do
         fi
     done
 
-    # 在输出目录下先建立 mrs 文件夹，再创建专属子文件夹，例如 ./out/mrs/AdBlock
-    task_out_dir="$output_dir/$task"
-    mkdir -p "$task_out_dir"
+    # 为三种格式分别创建包含 Task 名字的子文件夹
+    dir_mrs="$out_mrs/$task"
+    dir_yaml="$out_yaml/$task"
+    dir_lsr="$out_lsr/$task"
+    mkdir -p "$dir_mrs" "$dir_yaml" "$dir_lsr"
 
-    # 将输出路径指向这个新创建的子文件夹
-    output_file="$task_out_dir/${task}.txt"
-    classical_file="$task_out_dir/${task}_Classical.yaml"
-    
     echo "字典序排序、去重 (基础清理)"
     sed -i -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' "$work_dir/tmp.txt"
+    sort -u "$work_dir/tmp.txt" -o "$work_dir/tmp.txt"
 
-    echo "分离非 Domain/IP 的其他规则 (如 KEYWORD, PROCESS-NAME 等)..."
+    echo "-> 执行纯整合：生成 .yaml 和 .lsr (不分离关键字规则)"
+    
+    # 1. 生成 yaml：添加 payload 表头，并为每行添加 yaml 列表项前缀和单引号
+    echo "payload:" > "$dir_yaml/${task}.yaml"
+    sed "s/^/  - '/; s/$/'/" "$work_dir/tmp.txt" >> "$dir_yaml/${task}.yaml"
+    
+    # 2. 生成 lsr：Loon 规则集支持纯文本列表，直接复制即可
+    cp "$work_dir/tmp.txt" "$dir_lsr/${task}.lsr"
+
+    # 3. 将后续 MRS 流程的输出路径指向 mrs 专属文件夹
+    output_file="$dir_mrs/${task}.txt"
+    classical_file="$dir_mrs/${task}_Classical.yaml"
+
+    echo "分离非 Domain/IP 的其他规则 (为 MRS 流程准备)..."
     rm -f "$work_dir/other_rules.tmp" "$work_dir/clean_tmp.txt"
     
     # 核心提取逻辑：匹配带有大写字母和逗号的 Clash 规则，但放过 DOMAIN, DOMAIN-SUFFIX, IP-CIDR, IP-CIDR6
@@ -408,81 +420,80 @@ echo "---------------------------------------"
 
 release_branch=$(yq -r '.git.release_branch' "$config_file")
 max_history=$(yq -r '.git.max_history' "$config_file")
-echo "开始部署到分支: $release_branch"
-# 配置 Git 身份
+
 if [ -n "$GITHUB_TOKEN" ]; then
     git config --global user.name "$(yq -r '.git.user_name' "$config_file")"
     git config --global user.email "$(yq -r '.git.user_email' "$config_file")"
 fi
-# 这里的逻辑是：不在当前目录下操作，而是克隆一个干净的 release 分支到 temp_repo 目录
-temp_repo="$work_dir/temp_repo"
-rm -rf "$temp_repo" || true
-# 获取当前仓库的远程地址
+
 remote_url=$(git config --get remote.origin.url)
-# 克隆 release 分支 (如果不存在则创建空目录)
-echo "正在克隆/初始化目标分支..."
-if git clone -q --filter=blob:none --branch "$release_branch" "$remote_url" "$temp_repo" 2>/dev/null; then
-    echo "成功拉取远程分支 $release_branch"
-else
-    echo "远程分支不存在，初始化新仓库"
-    mkdir -p "$temp_repo"
+
+# 定义自动化部署函数
+deploy_to_branch() {
+    local source_folder="$1"
+    local target_branch="$2"
+    
+    echo "======================================="
+    echo "开始部署到分支: $target_branch"
+    
+    local temp_repo="$work_dir/temp_repo_$target_branch"
+    rm -rf "$temp_repo" || true
+    
+    echo "正在克隆/初始化目标分支..."
+    if git clone -q --filter=blob:none --branch "$target_branch" "$remote_url" "$temp_repo" 2>/dev/null; then
+        echo "成功拉取远程分支 $target_branch"
+    else
+        echo "远程分支不存在，初始化新仓库"
+        mkdir -p "$temp_repo"
+        cd "$temp_repo"
+        git init
+        git checkout -b "$target_branch"
+        git remote add origin "$remote_url"
+        cd - > /dev/null
+    fi
+    
+    # 复制生成的文件到 git 目录
+    find "$temp_repo" -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+    cp -r "$source_folder"/* "$temp_repo/"
+    
     cd "$temp_repo"
-    git init
-    git checkout -b "$release_branch"
-    git remote add origin "$remote_url"
-    cd - > /dev/null
-fi
-# 复制生成的文件到 git 目录
-# 先删除 git 目录里除了 .git 以外的所有文件，确保删除旧规则
-find "$temp_repo" -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
-cp -r "$output_dir"/* "$temp_repo/"
-# 进入 Git 目录进行操作
-cd "$temp_repo"
-# 检查是否有变化
-git add .
-if git diff --staged --quiet; then
-    echo "规则无变化，跳过提交和推送。"
-    exit 0
-fi
-# 提交
-git commit -m "Auto Update: $(date '+%Y-%m-%d %H:%M:%S')"
-# 核心逻辑：检查提交数量
-commit_count=$(git rev-list --count HEAD)
-echo "当前分支提交数量: $commit_count (上限: $max_history)"
-if [ "$commit_count" -gt "$max_history" ]; then
-    echo "触发历史清理机制..."
-    # 逻辑：创建一个新的孤儿分支，包含当前文件的最新状态，然后强制覆盖 release
-    # 1. 切换到临时孤儿分支
-    git checkout --orphan temp_reset_branch
-    # 2. 添加当前所有文件
     git add .
-    # 3. 提交
-    git commit -m "Reset History: $(date '+%Y-%m-%d') (Cleaned up old commits)"
-    # 4. 删除旧的 release 指针
-    git branch -D "$release_branch"
-    # 5. 重命名当前分支为 release
-    git branch -m "$release_branch"
-    # 6. 标记需要强制推送
-    push_args="--force"
-    echo "历史已重置为 1 条提交。"
-else
-    push_args=""
-    echo "历史数量在允许范围内，正常推送。"
-fi
-# 推送
-# 在 GitHub Actions 中，需要使用 Token 进行身份验证
-# 我们将 remote url 修改为带 Token 的格式
-# 注意：$GITHUB_TOKEN 必须在 workflow 的 env 中传入
-if [ -n "$GITHUB_TOKEN" ]; then
-    # 替换 origin URL，加入 token
-    # 格式: https://x-access-token:TOKEN@github.com/user/repo.git
-    # 这里的 sed 会替换 https://github.com... 
-    origin_url=$(git remote get-url origin)
-    auth_url=$(echo "$origin_url" | sed "s/https:\/\//https:\/\/x-access-token:$GITHUB_TOKEN@/")
-    git remote set-url origin "$auth_url"
-else
-    echo "警告: GITHUB_TOKEN 未设置，推送可能失败！"
-fi
-echo "正在推送到 GitHub..."
-git push $push_args origin "$release_branch"
-echo "完成！"
+    if git diff --staged --quiet; then
+        echo "分支 $target_branch 无变化，跳过提交。"
+        cd - > /dev/null
+        return 0
+    fi
+    
+    git commit -m "Auto Update: $(date '+%Y-%m-%d %H:%M:%S')"
+    
+    local commit_count=$(git rev-list --count HEAD)
+    local push_args=""
+    if [ "$commit_count" -gt "$max_history" ]; then
+        echo "触发历史清理机制..."
+        git checkout --orphan temp_reset_branch
+        git add .
+        git commit -m "Reset History: $(date '+%Y-%m-%d')"
+        git branch -D "$target_branch"
+        git branch -m "$target_branch"
+        push_args="--force"
+    fi
+    
+    if [ -n "$GITHUB_TOKEN" ]; then
+        # 去除已有的 token，防止重复拼接导致格式错误
+        local clean_url=$(echo "$remote_url" | sed -E 's/https:\/\/[^@]+@/https:\/\//')
+        local auth_url=$(echo "$clean_url" | sed "s/https:\/\//https:\/\/x-access-token:$GITHUB_TOKEN@/")
+        git remote set-url origin "$auth_url"
+    fi
+    
+    echo "正在推送 $target_branch 到 GitHub..."
+    git push $push_args origin "$target_branch"
+    cd - > /dev/null
+}
+
+# 依次执行三个分支的部署
+deploy_to_branch "$out_mrs" "mrs"
+deploy_to_branch "$out_yaml" "yaml"
+deploy_to_branch "$out_lsr" "lsr"
+
+echo "======================================="
+echo "全部流程执行完毕！"
