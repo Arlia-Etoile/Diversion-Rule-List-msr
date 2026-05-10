@@ -338,6 +338,65 @@ tasks:
       domains = filtered_domains
       
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
+
+  Direct:
+    format: "mrs"
+    type: "domain"
+    src: 
+      - "https://rule.kelee.one/Clash/Direct.yaml"
+      - "https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml"
+      - "https://rule.kelee.one/Clash/WeChat.yaml"
+      
+    custom_script: |
+      import re
+      import ipaddress
+      print(f"  -> 执行域名清洗，处理前数量: {len(domains)}")
+
+      filtered_domains = []
+      for d in domains:
+          d_upper = d.upper()
+          
+          # 1. 将包含 IP 相关关键字直接踢出
+          if "IP-CIDR" in d_upper or "IP-ASN" in d_upper or "GEOIP" in d_upper:
+              continue
+          
+          # 2. 洗白 Classical 格式 (把 DOMAIN-SUFFIX,abc.com 变成 +.abc.com)
+          if d_upper.startswith("DOMAIN-SUFFIX,"):
+              parts = d.split(',')
+              if len(parts) >= 2:
+                  d = "+." + parts[1].strip()
+          elif d_upper.startswith("DOMAIN,"):
+              parts = d.split(',')
+              if len(parts) >= 2:
+                  d = parts[1].strip()
+          elif d_upper.startswith("DOMAIN-KEYWORD,"):
+              continue # domain 规则集不支持 keyword，直接忽略
+              
+          # 3. 兜底：处理潜伏的纯 IP 和 IPv6
+          clean_d = re.sub(r'^[\+\*\.\"\']+|[\"\']+$', '', d.strip())
+          is_ip = False
+          try:
+              ipaddress.ip_network(clean_d, strict=False)
+              is_ip = True
+          except ValueError:
+              pass
+              
+          if is_ip or ':' in clean_d:
+              continue
+              
+          filtered_domains.append(d)
+
+      domains = filtered_domains
+
+      print(f"  -> 清洗完成，处理后数量: {len(domains)}")
+
+  Direct-IP:
+    format: "mrs"
+    type: "ipcidr"
+    src:
+      - "https://rule.kelee.one/Clash/Direct.yaml"
+      - "https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml"
+      - "https://rule.kelee.one/Clash/WeChat.yaml"
   
   Bank_CN:
     format: "mrs"
@@ -412,62 +471,6 @@ tasks:
       - "https://rule.kelee.one/Clash/PSBC.yaml"
       - "https://rule.kelee.one/Clash/PingAn.yaml"
       - "https://rule.kelee.one/Clash/UnionPay.yaml"
-      - "https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml"
-  Direct:
-    format: "mrs"
-    type: "domain"
-    src: 
-      - "https://rule.kelee.one/Clash/Direct.yaml"
-      - "https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml"
-      
-    custom_script: |
-      import re
-      import ipaddress
-      print(f"  -> 执行域名清洗，处理前数量: {len(domains)}")
-
-      filtered_domains = []
-      for d in domains:
-          d_upper = d.upper()
-          
-          # 1. 将包含 IP 相关关键字直接踢出
-          if "IP-CIDR" in d_upper or "IP-ASN" in d_upper or "GEOIP" in d_upper:
-              continue
-          
-          # 2. 洗白 Classical 格式 (把 DOMAIN-SUFFIX,abc.com 变成 +.abc.com)
-          if d_upper.startswith("DOMAIN-SUFFIX,"):
-              parts = d.split(',')
-              if len(parts) >= 2:
-                  d = "+." + parts[1].strip()
-          elif d_upper.startswith("DOMAIN,"):
-              parts = d.split(',')
-              if len(parts) >= 2:
-                  d = parts[1].strip()
-          elif d_upper.startswith("DOMAIN-KEYWORD,"):
-              continue # domain 规则集不支持 keyword，直接忽略
-              
-          # 3. 兜底：处理潜伏的纯 IP 和 IPv6
-          clean_d = re.sub(r'^[\+\*\.\"\']+|[\"\']+$', '', d.strip())
-          is_ip = False
-          try:
-              ipaddress.ip_network(clean_d, strict=False)
-              is_ip = True
-          except ValueError:
-              pass
-              
-          if is_ip or ':' in clean_d:
-              continue
-              
-          filtered_domains.append(d)
-
-      domains = filtered_domains
-
-      print(f"  -> 清洗完成，处理后数量: {len(domains)}")
-
-  Direct-IP:
-    format: "mrs"
-    type: "ipcidr"
-    src:
-      - "https://rule.kelee.one/Clash/Direct.yaml"
       - "https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml"
 
   Proxy:
