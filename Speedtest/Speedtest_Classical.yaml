@@ -1,0 +1,5 @@
+payload:
+  - DOMAIN-KEYWORD,speedtest
+  - USER-AGENT,SpeedTest*
+  - DOMAIN-KEYWORD,speedtest
+  - USER-AGENT,SpeedTest*

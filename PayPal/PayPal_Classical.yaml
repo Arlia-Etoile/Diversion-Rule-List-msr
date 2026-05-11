@@ -1,0 +1,5 @@
+payload:
+  - DOMAIN-KEYWORD,paypal
+  - USER-AGENT,PayPal*
+  - DOMAIN-KEYWORD,paypal
+  - USER-AGENT,PayPal*

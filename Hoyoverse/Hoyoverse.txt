@@ -1,0 +1,11 @@
++.hoyo.link
++.hoyolab.com
++.yuanshen.com
++.hoyoverse.com
++.juequling.com
++.starrails.com
++.n0vadesktop.com
++.themisweeps.com
++.genshinimpact.com
++.honkaiimpact3.com
++.honkaistarrail.com

@@ -1,0 +1,8 @@
++.icloud.cn
++.apzones.com
++.icloud.com.cn
++.icloud.net.cn
++.appleicloud.cn
++.icloudapple.cn
++.apple-icloud.cn
++.icloud-apple.cn

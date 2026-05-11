@@ -1,0 +1,4 @@
++.claude.ai
+cdn.usefathom.com
++.anthropic.com
+servd-anthropic-website.b-cdn.net

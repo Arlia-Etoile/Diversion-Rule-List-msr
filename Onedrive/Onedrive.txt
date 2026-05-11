@@ -1,0 +1,14 @@
++.1drv.com
+oneclient.sfx.ms
++.onedrive.com
++.sharepoint.com
++.photos.live.com
++.storage.msn.com
++.oneclient.sfx.ms
++.storage.live.com
++.livefilestore.com
++.onedrive.live.com
++.sharepointonline.com
++.spoprod-a.akamaihd.net
++.skydrive.wns.windows.com
++.microsoftpersonalcontent.com

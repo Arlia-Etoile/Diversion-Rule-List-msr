@@ -1,0 +1,2 @@
++.push.apple.com # 推送通知
+identity.apple.com # APNs 证书请求门户

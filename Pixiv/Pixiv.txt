@@ -1,0 +1,8 @@
++.booth.pm
++.pixiv.me
++.fanbox.cc
++.pixiv.cat
++.pixiv.net
++.pixiv.org
++.pximg.net
++.pixiv.co.jp
