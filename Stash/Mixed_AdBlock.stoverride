@@ -103,12 +103,12 @@ http:
       ^https?:\/\/yghsh\.cebbank\.com\/static\/picture\/.*.jpg - reject-200
 # > 中国银行
     - >-
-      ^https:\/\/mbs\.boc\.cn\/ubas-mgateway-static\/images\/advertType\/.+.jpg - reject-200
+      ^https?:\/\/mbs\.boc\.cn\/ubas-mgateway-static\/images\/advertType\/.+.jpg - reject-200
 # > 中国银行 缤纷生活
     - >-
       ^https?:\/\/mlife\.jf365\.boc\.cn\/mlife\/mobilelife\/uploadfile\/IosPict1\/.*.png - reject-200
     - >-
-      ^https:\/\/mcc.psbc.com:9090\/mcc\/resources\/[0-9]+\.(jpg|png) - reject-200
+      ^https?:\/\/mcc.psbc.com:9090\/mcc\/resources\/[0-9]+\.(jpg|png) - reject-200
 # > 邮储信用卡
     - >-
       ^https?:\/\/d\.psbc\.com:9091\/mcc\/resources\/[0-9]+\.(jpg|png|jpeg) - reject-200
@@ -132,15 +132,15 @@ http:
       ^https?:\/\/resource.cmbchina.com\/fsp\/File\/ClientFacePublic\/.+.gif - reject
 # > gif url reject 只拦截gif格式的图片
     - >-
-      ^https:\/\/s3gw.cmbimg.com\/mbappinitads\/.*.(jpg|png) - reject-200
+      ^https?:\/\/s3gw.cmbimg.com\/mbappinitads\/.*.(jpg|png) - reject-200
 # > 全民生活
     - >-
-      ^https://rs.creditcard.cmbc.com.cn/mmc/img/126f35586ece469aa2daf2e451ba7b4d.jpg - reject-200
+      ^https?:\/\/rs.creditcard.cmbc.com.cn/mmc/img/126f35586ece469aa2daf2e451ba7b4d.jpg - reject-200
 # > 民生银行
     - >-
       ^https?:\/\/www\.cmbc\.com\.cn\/m\/image\/loadingpage\/ - reject-200
     - >-
-      ^https:\/\/www\.cmbc\.com\.cn\/m\/image\/banner\/.*.png - reject-200
+      ^https?:\/\/www\.cmbc\.com\.cn\/m\/image\/banner\/.*.png - reject-200
 # > 浦大喜奔（倒计时还在）(7.2.5以上版本多了一行 点击了解详情)
     - >-
       ^https?:\/\/image\.spdbccc\.com\.cn\/group\d\/M00\/[A-Z0-9]{2}\/[A-Z0-9]{2}\/[a-zA-Z]{7}-[a-zA-Z]{11}_[a-zA-Z0-9]{10}\.jpg - reject-200
@@ -188,7 +188,6 @@ http:
       ^https?:\/\/static\.creditcard\.hxb\.com\.cn\/app\/apps\/group1\/M00\/00\/21\/amRGFWJzJsGAdy7RAAFxgeiCVcw561\.jpg - reject
     - >-
       ^https?:\/\/static\.creditcard\.hxb\.com\.cn\/app\/apps\/group1\/M00\/00\/20\/amRGFWJWO2iASPzaAAKFE-z58V0231\.jpg - reject
-#^https?:\/\/imcs\.citicbank\.com\/cloud\/.*.(jpg|png) - reject-200
     - >-
       ^https?:\/\/imcs\.citicbank\.com\/cloud\/[a-zA-Z0-9]{32}\.(jpg|png)\?width=[0-9]{3}&height=[0-9]{4} - reject-200
     - >-
@@ -223,7 +222,7 @@ http:
 # > 北京银行  主机名 cdnmobibank.bankofbeijing.com.cn
     - >-
       ^https?:\/\/cdnmobibank\.bankofbeijing\.com\.cn\/cdn\/MarketingCloud\/.+\/.+\/99_1\/.+\.jpg - reject-200
-# > 掌上京彩  主机名 cdn-xyk-app.bankofbeijing.com.cn
+# > 掌上京彩 主机名 cdn-xyk-app.bankofbeijing.com.cn
     - >-
       ^https?:\/\/cdn-xyk-app\.bankofbeijing\.com\.cn\/cdn\/resource\/image\/advertise - reject-200
 # > 银盛通
@@ -231,10 +230,10 @@ http:
       ^https?:\/\/ad\.ysepay\.com\/yst-ad\/ST101001\/[0-9]{11}\.jpg - reject
 # > 兴业证券 优理宝（3秒倒计时,任意位置点一下即可跳过）
     - >-
-      ^https:\/\/static.xyzq.cn\/image\/splash\/opera3.*.jpg - reject-200
+      ^https?:\/\/static.xyzq.cn\/image\/splash\/opera3.*.jpg - reject-200
 # > 涨乐财富通
     - >-
-      ^https?+:\/\/d\.zhangle\.com\/pic\/cft\/interaction\/\d{13}-1242-2248\.jpg - reject-200
+      ^https?:\/\/d\.zhangle\.com\/pic\/cft\/interaction\/\d{13}-1242-2248\.jpg - reject-200
 # > 天天基金
     - >-
       ^https?:\/\/j5\.dfcfw\.com\/WG\/conf\/202[0-9]{5}/.*.(jpg|png) - reject-200
@@ -251,9 +250,9 @@ http:
       ^https?:\/\/pic\.u51\.com\/sfs-gateway\/api\/v1\/download\/fdee084b34be406bb1dca0b3f95e00ca91eb - reject
 # > 交管12123
     - >-
-      ^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ - reject
+      ^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ - reject
     - >-
-      ^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery - reject
+      ^https?:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery - reject
     - >-
       ^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
     - >-
@@ -267,7 +266,7 @@ http:
     - >-
       ^https?:\/\/cloud\.189\.cn\/include\/splash\/ - reject
     - >-
-      ^https:\/\/mbd\.baidu\.com\/newspage\/api\/getmobads\?page\=landingshare - reject
+      ^https?:\/\/mbd\.baidu\.com\/newspage\/api\/getmobads\?page\=landingshare - reject
 # > 哔哩哔哩屏蔽IP请求
     - >-
       ^https?:\/\/app\.bilibili\.com\/x\/resource\/ip - reject
@@ -330,10 +329,10 @@ http:
       ^https?:\/\/gw\.csdn\.net\/cms-app\/v\d+\/home_page\/open_advertisement - reject
 # > 小米运动
     - >-
-      ^https:\/\/api-mifit-cn2\.huami\.com\/discovery\/mi\/cards\/startpage_ad - reject
+      ^https?:\/\/api-mifit-cn2\.huami\.com\/discovery\/mi\/cards\/startpage_ad - reject
 # > 山东移动
     - >-
-      https?:\/\/m\.sd\.10086\.cn\/zapi\/app_common\/homeWelcome\/welcome.do - reject-dict
+      ^https?:\/\/m\.sd\.10086\.cn\/zapi\/app_common\/homeWelcome\/welcome.do - reject-dict
 # > 广东移动
     - >-
       ^https?:\/\/gd\.10086\.cn\/gmccfile\/file\/image\/preloading703\/pre202[0-9]{20}\.jpg - reject-dict
