@@ -18,6 +18,9 @@
 | `AdBlock` | `MRS` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock.mrs |
 | `AdBlock_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/AdBlock/AdBlock_Classical.yaml |
 | `AppStore` | `MRS` | https://r.arlia.cn.mt/mrs/AppStore/AppStore.mrs |
+| `Apple-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Apple/Apple-IP.mrs |
+| `Apple` | `MRS` | https://r.arlia.cn.mt/mrs/Apple/Apple.mrs |
+| `Apple_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Apple/Apple_Classical.yaml |
 | `AppleID` | `MRS` | https://r.arlia.cn.mt/mrs/AppleID/AppleID.mrs |
 | `Bank_CN` | `MRS` | https://r.arlia.cn.mt/mrs/Bank_CN/Bank_CN.mrs |
 | `ClaudeAI` | `MRS` | https://r.arlia.cn.mt/mrs/ClaudeAI/ClaudeAI.mrs |
@@ -66,6 +69,7 @@
 | `APNs` | `LSR` | https://r.arlia.cn.mt/lsr/APNs/APNs.lsr |
 | `AdBlock` | `LSR` | https://r.arlia.cn.mt/lsr/AdBlock/AdBlock.lsr |
 | `AppStore` | `LSR` | https://r.arlia.cn.mt/lsr/AppStore/AppStore.lsr |
+| `Apple` | `LSR` | https://r.arlia.cn.mt/lsr/Apple/Apple.lsr |
 | `AppleID` | `LSR` | https://r.arlia.cn.mt/lsr/AppleID/AppleID.lsr |
 | `Bank_CN` | `LSR` | https://r.arlia.cn.mt/lsr/Bank_CN/Bank_CN.lsr |
 | `ClaudeAI` | `LSR` | https://r.arlia.cn.mt/lsr/ClaudeAI/ClaudeAI.lsr |
@@ -97,6 +101,7 @@
 | `APNs` | `YAML` | https://r.arlia.cn.mt/yaml/APNs/APNs.yaml |
 | `AdBlock` | `YAML` | https://r.arlia.cn.mt/yaml/AdBlock/AdBlock.yaml |
 | `AppStore` | `YAML` | https://r.arlia.cn.mt/yaml/AppStore/AppStore.yaml |
+| `Apple` | `YAML` | https://r.arlia.cn.mt/yaml/Apple/Apple.yaml |
 | `AppleID` | `YAML` | https://r.arlia.cn.mt/yaml/AppleID/AppleID.yaml |
 | `Bank_CN` | `YAML` | https://r.arlia.cn.mt/yaml/Bank_CN/Bank_CN.yaml |
 | `ClaudeAI` | `YAML` | https://r.arlia.cn.mt/yaml/ClaudeAI/ClaudeAI.yaml |
