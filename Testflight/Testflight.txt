@@ -1,2 +1,2 @@
-beta.apple.com
-testflight.apple.com
+DOMAIN,beta.apple.com
+DOMAIN,testflight.apple.com
