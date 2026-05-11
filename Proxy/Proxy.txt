@@ -755,7 +755,6 @@ translate.googleapis.com
 +.livrariart.com.br
 +.mfg-inspector.com
 +.notion-static.com
-+.qgadmin.qcpp1.net
 +.spreadprivacy.com
 +.thegithubshop.com
 +.thomsonreuters.ca
@@ -771,7 +770,6 @@ translate.googleapis.com
 +.cloudfunctions.net
 +.dataliberation.org
 +.doubleclick-cn.net
-+.download.qatp1.net
 +.githubuniverse.com
 +.gongyichuangyi.net
 +.googlecommerce.com
@@ -803,8 +801,6 @@ translate.googleapis.com
 +.neweconomyforum.com
 +.polymer-project.org
 +.projectbaseline.com
-+.qagpublic.qatp1.net
-+.qualysapi.qatp1.net
 +.redirector.gvt1.com
 +.stcroixmosquito.com
 +.techatbloomberg.com
@@ -820,7 +816,6 @@ safebrowsing.googleapis.com
 +.googleadservices.com
 +.googleflights-cn.net
 +.googletagmanager.com
-+.monitoring.qpdp1.net
 +.newenergyfinance.com
 +.partylikeits1986.org
 +.screenwisetrends.com
@@ -849,7 +844,6 @@ rpc.arb1.arbitrum.gateway.fm
 +.opensourceinsight.dev
 +.privacysimplified.com
 +.qpx.googleflights.net
-+.qualysguard.qpdp1.net
 +.sweetandmaxwell.co.uk
 +.thomsonreuters.com.ar
 +.thomsonreuters.com.au
@@ -872,7 +866,6 @@ zetachain-evm.blockpi.network
 +.google-syndication.com
 +.opensourceinsights.dev
 +.pagespeedmobilizer.com
-+.scanservice1.qcpp1.net
 +.studywatchbyverily.com
 +.studywatchbyverily.org
 +.stxmosquitoproject.com
