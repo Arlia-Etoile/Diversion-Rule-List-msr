@@ -1479,7 +1479,6 @@ tasks:
               continue
               
           filtered_domains.append(d)
-
   iCloud:
     format: "mrs"
     type: "domain"
@@ -1534,6 +1533,3 @@ tasks:
     type: "ipcidr"
     src:
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/legacy/yaml/iCloud.yaml"
-      domains = filtered_domains
-      
-      print(f"  -> 清洗完成，处理后数量: {len(domains)}")
