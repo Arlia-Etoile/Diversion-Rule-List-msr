@@ -22,9 +22,8 @@ tasks:
     format: "mrs"
     type: "domain"
     src: 
-      - "https://rule.kelee.one/Clash/Advertising.yaml"
+      - "https://rule.kelee.one/Clash/AdvertisingLite.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/legacy/yaml/OtherBlock.yaml"
-      - "https://rule.kelee.one/Clash/AdGuardSDNSFilter.yaml"
       - "https://rule.kelee.one/Clash/JiGuangTuiSong.yaml"
       - "https://rule.kelee.one/Clash/YouMengChuangXiang.yaml"
       
@@ -100,9 +99,8 @@ tasks:
     format: "mrs"
     type: "ipcidr"
     src:
-      - "https://rule.kelee.one/Clash/Advertising.yaml"
+      - "https://rule.kelee.one/Clash/AdvertisingLite.yaml"
       - "https://raw.githubusercontent.com/Arlia-Etoile/Diversion-Rule-List/refs/heads/legacy/yaml/OtherBlock.yaml"
-      - "https://rule.kelee.one/Clash/AdGuardSDNSFilter.yaml"
       - "https://rule.kelee.one/Clash/JiGuangTuiSong.yaml "
       - "https://rule.kelee.one/Clash/YouMengChuangXiang.yaml"
 
