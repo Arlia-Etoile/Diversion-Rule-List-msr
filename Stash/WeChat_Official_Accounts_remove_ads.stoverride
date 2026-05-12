@@ -1,0 +1,29 @@
+name: |-
+  微信公众号去广告
+desc: |-
+  过滤微信公众号广告
+author: |-
+  @RuCu6
+icon: |-
+  https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Weixin.png
+category: |-
+  AdBlocker
+date: |-
+  2025-05-13 15:17:08
+homepage: |-
+  https://hub.kelee.one
+
+rules:
+  - DOMAIN-SUFFIX,wxs.qq.com,REJECT
+
+http:
+
+  mitm:
+    - "mp.weixin.qq.com"
+
+  url-rewrite:
+    - >-
+      ^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? - reject-dict
+    - >-
+      ^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword - reject-dict
+
