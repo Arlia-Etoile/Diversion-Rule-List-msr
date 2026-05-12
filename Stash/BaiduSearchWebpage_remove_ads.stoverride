@@ -1,0 +1,33 @@
+name: |-
+  百度搜索去广告
+desc: |-
+  移除百度搜索移动端网页的首页广告信息流
+author: |-
+  @Keywos
+icon: |-
+  https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/Baidu.png
+category: |-
+  AdBlocker
+date: |-
+  2025-05-13 15:17:08
+homepage: |-
+  https://hub.kelee.one
+
+http:
+
+  mitm:
+    - "m.baidu.com"
+    - "www.baidu.com"
+
+  script:
+    - match: ^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9})
+      name: "移除百度搜索首页信息流广告"
+      type: response
+      require-body: true
+      timeout: 20
+
+script-providers:
+  "移除百度搜索首页信息流广告":
+    url: https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js
+    interval: 86400
+
