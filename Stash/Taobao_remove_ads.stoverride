@@ -67,7 +67,7 @@ http:
       timeout: 20
 
 script-providers:
-  "移除淘宝开屏广告_28":
+  "移除淘宝开屏广告":
     url: https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js
     interval: 86400
 
