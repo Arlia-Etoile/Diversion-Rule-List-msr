@@ -36,6 +36,7 @@
 | `PayPal` | `MRS` | https://r.arlia.cn.mt/mrs/PayPal/PayPal.mrs |
 | `PayPal_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/PayPal/PayPal_Classical.yaml |
 | `Pixiv` | `MRS` | https://r.arlia.cn.mt/mrs/Pixiv/Pixiv.mrs |
+| `Prevent_DNS_Leaks` | `MRS` | https://r.arlia.cn.mt/mrs/Prevent_DNS_Leaks/Prevent_DNS_Leaks.mrs |
 | `Privacy_Protection-IP` | `MRS` | https://r.arlia.cn.mt/mrs/Privacy_Protection/Privacy_Protection-IP.mrs |
 | `Privacy_Protection` | `MRS` | https://r.arlia.cn.mt/mrs/Privacy_Protection/Privacy_Protection.mrs |
 | `Privacy_Protection_Classical` | `YAML` | https://r.arlia.cn.mt/mrs/Privacy_Protection/Privacy_Protection_Classical.yaml |
@@ -80,6 +81,7 @@
 | `Onedrive` | `LSR` | https://r.arlia.cn.mt/lsr/Onedrive/Onedrive.lsr |
 | `PayPal` | `LSR` | https://r.arlia.cn.mt/lsr/PayPal/PayPal.lsr |
 | `Pixiv` | `LSR` | https://r.arlia.cn.mt/lsr/Pixiv/Pixiv.lsr |
+| `Prevent_DNS_Leaks` | `LSR` | https://r.arlia.cn.mt/lsr/Prevent_DNS_Leaks/Prevent_DNS_Leaks.lsr |
 | `Privacy_Protection` | `LSR` | https://r.arlia.cn.mt/lsr/Privacy_Protection/Privacy_Protection.lsr |
 | `Proxy` | `LSR` | https://r.arlia.cn.mt/lsr/Proxy/Proxy.lsr |
 | `Rockstar` | `LSR` | https://r.arlia.cn.mt/lsr/Rockstar/Rockstar.lsr |
@@ -112,6 +114,7 @@
 | `Onedrive` | `YAML` | https://r.arlia.cn.mt/yaml/Onedrive/Onedrive.yaml |
 | `PayPal` | `YAML` | https://r.arlia.cn.mt/yaml/PayPal/PayPal.yaml |
 | `Pixiv` | `YAML` | https://r.arlia.cn.mt/yaml/Pixiv/Pixiv.yaml |
+| `Prevent_DNS_Leaks` | `YAML` | https://r.arlia.cn.mt/yaml/Prevent_DNS_Leaks/Prevent_DNS_Leaks.yaml |
 | `Privacy_Protection` | `YAML` | https://r.arlia.cn.mt/yaml/Privacy_Protection/Privacy_Protection.yaml |
 | `Proxy` | `YAML` | https://r.arlia.cn.mt/yaml/Proxy/Proxy.yaml |
 | `Rockstar` | `YAML` | https://r.arlia.cn.mt/yaml/Rockstar/Rockstar.yaml |
