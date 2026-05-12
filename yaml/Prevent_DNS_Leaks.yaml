@@ -1,4 +1,4 @@
-payload：
+payload:
   - DOMAIN-SUFFIX,dnsleaktest.com
   - DOMAIN-SUFFIX,dnsleak.com
   - DOMAIN-SUFFIX,expressvpn.com
