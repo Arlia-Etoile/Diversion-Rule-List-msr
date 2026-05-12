@@ -10,6 +10,8 @@ date: |-
   2025-07-16 02:25:05
 homepage: |-
   https://hub.kelee.one
+Author: |-
+  @可莉
 
 rules:
   - DOMAIN,acdn.adnxs.com,REJECT
