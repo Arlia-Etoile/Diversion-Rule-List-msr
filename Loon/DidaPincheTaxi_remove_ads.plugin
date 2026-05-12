@@ -1,0 +1,12 @@
+#!name = 嘀嗒出行去广告
+#!desc = 移除开屏广告、弹窗广告、横幅广告，精简底栏和我的页面。
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/DiDa.png
+#!date = 2025-12-07 06:51:00
+#!homepage = https://hub.kelee.one
+#!author = @可莉
+
+[MITM]
+hostname = capis.didapinche.com
+
+[Rewrite]
+^https:\/\/capis\.didapinche\.com\/adbase\/ reject-dict
