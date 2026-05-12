@@ -1,8 +1,8 @@
-#!DNS防泄露
-#!详细：专为小白设计的DNS防泄露
-#!版本日期：2025-05-13 15:17:08
-#!主页：https://hub.kelee.one
-#!作者：@非正常人类研究中心
+#!name = DNS防泄露
+#!desc = 专为小白设计的DNS防泄露
+#!date = 2025-05-13 15:17:08
+#!homepage = https://hub.kelee.one
+#!Author = @非正常人类研究中心
 #!最低Loon版本：3.2.4(787)
 
 [Rule]
