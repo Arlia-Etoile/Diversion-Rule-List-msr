@@ -1,0 +1,24 @@
+name: |-
+  嘀嗒出行去广告
+desc: |-
+  移除开屏广告、弹窗广告、横幅广告，精简底栏和我的页面。
+author: |-
+  @可莉
+icon: |-
+  https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/DidaPincheTaxi.png
+category: |-
+  AdBlocker
+date: |-
+  2025-12-07 06:51:00
+homepage: |-
+  https://hub.kelee.one
+
+http:
+
+  mitm:
+    - "capis.didapinche.com"
+
+  url-rewrite:
+    - >-
+      ^https:\/\/capis\.didapinche\.com\/adbase\/ - reject-dict
+
