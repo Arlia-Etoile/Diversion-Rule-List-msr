@@ -1,0 +1,41 @@
+name: |-
+  12306去广告
+desc: |-
+  过滤12306应用内广告及开屏广告
+author: |-
+  @RuCu6 @可莉
+icon: |-
+  https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/12306.png
+category: |-
+  AdBlocker
+date: |-
+  2026-03-14 07:41:44
+homepage: |-
+  https://hub.kelee.one
+
+rules:
+  - DOMAIN,ad.12306.cn,DIRECT
+
+http:
+
+  mitm:
+    - "ad.12306.cn"
+    - "mobile.12306.cn"
+
+  body-rewrite:
+    - >-
+      ^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$ response-jq delpaths([["materialsList"]])
+    - >-
+      ^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$ response-jq delpaths([["advertParam"]])
+
+  script:
+    - match: ^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$
+      name: "移除12306应用内广告_13"
+      type: request
+      timeout: 20
+
+script-providers:
+  "移除12306应用内广告_13":
+    url: https://kelee.one/Resource/JavaScript/12306/12306_remove_ads.js
+    interval: 86400
+
