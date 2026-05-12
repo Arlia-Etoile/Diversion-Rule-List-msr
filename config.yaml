@@ -1589,7 +1589,7 @@ tasks:
     src:
       - "https://rule.kelee.one/Clash/Apple.yaml"
 
- Prevent_DNS_Leaks:
+  Prevent_DNS_Leaks:
     format: "mrs"
     type: "domain"
     src: 
@@ -1637,4 +1637,4 @@ tasks:
       domains = filtered_domains
       
       print(f"  -> 清洗完成，处理后数量: {len(domains)}")
-
+      
